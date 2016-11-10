@@ -1,0 +1,71 @@
+<div class="jumbotron">
+
+  <div class="container">
+      <div class="row">
+          <div class="col-md-8 col-md-offset-2">
+              <div class="login-panel panel panel-default">
+                  <div class="panel-heading">
+                    <center>  <h2 class="panel-title">Fundo de caixa do condomínio</h2></center>
+                  </div>
+                  <div class="panel-body">
+<!--
+    <button type="button" ng-hide="showAddEditUser" ng-click="show()">
+       Atualizar o Caixa
+        </button>
+-->
+  <form ng-submit="saveCaixa(c)" ng-hide="!showAddEditUser">
+
+
+
+
+
+   <div class="form-group">
+        <label>Valor total do caixa: </label>
+             <input  class="form-control" type="text" placeholder="Valor" ng-model="c.valor "  required>
+       </div>
+
+
+
+
+       <button  class="btn btn-success btn-s"   type="submit">
+              <span class="glyphicon glyphicon-upload"></span> Salvar </button>
+                    <button type="reset"  class="btn btn-danger btn-s">
+                 <span class="glyphicon glyphicon-trash"></span>Limpar Nome</button>
+           <button type="button" value="Voltar" onClick="history.go(-1)" class="btn btn-danger btn-s">Voltar </button>
+             <button type="button" class="btn btn-success btn-s"  ng-click="hide()">Cancel</button>
+
+  </form>
+  <br><br>
+
+  <div class="row">
+                   <div class="col-lg-30">
+
+                       <div class="table-responsive">
+                           <table class="table table-bordered table-hover table-striped">
+         <thead>
+            <tr>
+
+               <th><font color="#FF1CAE">Valor atual</font></th>
+               <th><font color="#238E68">Caixa</font></th>
+               <th><font color="#238E68">Do condomínio</font></th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="c in cs" class="active">
+
+
+          <td><font color="#238E68">{{ c.valor | currency: 'R$' }}</font></td>
+            <th>100%</th>
+          <th>Atualizado</th>
+
+
+              <!--
+          <td><button ng-click="editCaixa(c)">Edit</button></td>
+          <td><button ng-click="deleteCaixa(c)">Delete</button></td>
+          -->
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

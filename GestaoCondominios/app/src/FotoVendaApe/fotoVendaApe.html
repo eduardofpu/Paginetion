@@ -1,0 +1,140 @@
+<div class="jumbotron">
+
+  <div class="container">
+      <div class="row">
+          <div class="col-md-25 col-md-offset-1">
+              <div class="login-panel panel panel-default">
+                  <div class="panel-heading">
+                      <h3 class="panel-title">Fotos de venda de Apartamentos</h3>
+                  </div>
+                  <div class="panel-body">
+
+<div>
+    <button type="button" ng-hide="showAddFotoApe" ng-click="show()" class="btn  btn-primary  btn-lg  aw-btn-full-width">
+       Tirar Fotos do apartamento para Vender
+        </button>
+
+  <form ng-submit="saveFotoVendaApe(fotoApe)" ng-hide="!showAddFotoApe" name="form1">
+
+  <div class="form-group">
+    <label>Escolha o valor</label>
+      <div >
+      <select class="form-control"   ng-model="fotoApe.venderApartamentoId.id">
+         <option ng-repeat="ape in apes"
+          value="{{ape.id}}">{{ape.valor}}</option>
+       </select>
+      </div>
+    </div>
+
+        <center  ><img ng-src="{{fotoApe.mimeType}},{{fotoApe.file}}" width="400" class="img-circle img80_80" /></center>
+
+
+           <br />
+
+       <div>
+                 Selecione uma Imagem:
+                       <br />
+                      <!--id="myFile"--> <!--ng-hide="showAddEditformulario" ng-click="show()"-->
+                     <input   type="file" class="btn btn-danger btn-xs"   ng-model="fotoApe.file" accept="image/*"
+                         multiple app-filereader ng-change="updateLinkImage(fotoApe.file[0])" />
+
+                <br />
+
+      </div>
+
+
+  <div class="form-group">
+      <div ng-class="{'has-error': form1.comodo$touched && (form1.comodo.$error.required) , 'has-success':form1.comodo.$valid}">
+
+            <label>Comodo:</label>
+                <input name="comodo" class="form-control"  type="text" placeholder="Qual comodo do apartamento" ng-model="fotoApe.comodo" required>
+             </div>
+ </div>
+
+ <div ng-show="form1.comodo.$dirty" >
+      <div  ng-show="form1.comodo.$error.required" class="alert alert-danger" role="alert">Campo cômodo é obrigatório </div>
+
+  </div>
+
+
+
+             <button  class="btn btn-success btn-s"   type="submit">
+                    <span class="glyphicon glyphicon-upload"></span> Salvar </button>
+                          <button type="reset"  class="btn btn-danger btn-s">
+                       <span class="glyphicon glyphicon-trash"></span>Limpar Nome</button>
+                 <button type="button" value="Voltar" onClick="history.go(-1)" class="btn btn-danger btn-s">Voltar </button>
+                   <button type="button" class="btn btn-success btn-s"  ng-click="hide()">Cancel</button>
+
+
+
+
+    </form>
+
+<br><br>
+
+
+
+
+                   <div class="row">
+                       <div class="col-lg-100">
+                       <br/><h3>Fotos</h3>
+                        <div class="table-responsive">
+                          <table class="table table-bordered table-hover table-striped">
+
+
+                            <div class="blocktext">
+
+                              <div >
+
+                               <div class="form-group input-group">
+
+                              <input type="text" class="form-control"  ng-model="busca"
+                               placeholder="Pesquise uma Descricao: " size="30"	maxlength="30" />
+                               <span class="input-group-addon"><i class="fa fa-search"></i></span>
+
+
+                                 </div>
+                               </div>
+                              </div>
+
+
+                           <br/>
+
+
+                            <thead>
+                               <tr>
+                                  <th>Comodo</th>
+                                  <th>Apartamento</th>
+                                  <th>valor do Aluguel</th>
+                                  <th>Fotos do apartamento</th>
+                                  <th>Ediatar</th>
+                                  <th>Deletar</th>
+                           </tr>
+                         </thead>
+                         <tbody>
+                          <!-- <tr ng-repeat="fotoApe in fotoApes|filter:busca" class="active">-->
+                          <tr dir-paginate="fotoApe in fotoApes|filter:busca |orderBy:sortKey:reverse|itemsPerPage:4">
+
+
+
+                             <td>{{ fotoApe.comodo }}</td>
+                             <td>{{ fotoApe.userFotoVendaApe.userid.descricao}}</td>
+                             <td>{{ fotoApe.venderApartamentoId.valor}}</td>
+                             <td> <img ng-src="{{fotoApe.mimeType}},{{fotoApe.file}}" width="200" /></td>
+                             <td><button ng-click="editFotoVendaApe(fotoApe)" class="btn btn-success btn-s"><span class="glyphicon glyphicon-ok"></span></button></td>
+                             <td><button ng-click="deleteFotoVendaApe(fotoApe)" class="btn btn-danger btn-s"><span class="glyphicon glyphicon-trash"></span></button></td>
+
+
+                             <dir-pagination-controls max-size="4" boundary-links="true"></dir-pagination-controls>
+
+                           </tr>
+                          </tbody>
+                         </table>
+                       </div>
+                      </div>
+                    </div>
+
+
+
+
+</div>

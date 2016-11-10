@@ -1,0 +1,158 @@
+<!DOCTYPE HTML>
+<!--
+	Future Imperfect by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html lang="en" ng-app="mutrack">
+
+<head>
+    <title>Gestão em condomínios</title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="description" content="">
+    <meta name="author" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap Core CSS -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom CSS -->
+        <link href="css/sb-admin.css" rel="stylesheet">
+
+        <!-- Custom Fonts -->
+        <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="css/colorpicker.css" rel="stylesheet" type="text/css">
+        <link href="css/ng-notify.min.css" rel="stylesheet" type="text/css">
+
+
+	<!-- inject:css -->
+	<link rel="stylesheet" href="src/login/login.css">
+	<!-- endinject -->
+</head>
+
+
+
+
+
+<body>
+<!-- Wrapper -->
+		<div id="wrapper">
+		  <!-- Header -->
+
+
+			<header ng-include="'src/main/header.html'" id="modular">
+
+      </header>
+       <!-- Main -->
+			<div id="main">
+				<!-- Post -->
+				<article class="post">
+					<ng-view />
+
+				</article>
+
+
+        <center>
+               <div class="footer">
+                 <div class="container">
+                    <p><font color="#FFFFFF"> <p><span class="glyphicon glyphicon-heart"></span> 2016 Gestão em Condomínios.
+                     Todos os direitos reservados.</span></font></p>
+                 </div>
+               </div>
+
+        </center>
+
+      </div>
+
+
+
+  </div>
+
+
+
+
+
+
+    <script src="js/jquery.js"></script>
+	  <script src="js/angular.js"></script>
+    <script src="js/jquery.mask.js"></script> <!--Mascara para formatar cpf, fone ,cep e datas pasta Mascara/mask.js-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.maskedinput.js"></script> <!--Mascara para formatar placas de veiculos pasta Mascara/maskplaca.js-->
+    <script src="js/angular-route.min.js"></script>
+    <script src="js/angular-cookies.min.js"></script>
+    <script src="js/ngStorage.min.js"></script>
+    <script src="js/checklist-model.js"></script>
+    <script src="js/skel.min.js"></script>
+    <script src="js/util.js"></script>
+    <script src="js/ng-notify.min.js"></script>
+    <script src="js/ie/html5shiv.js"></script>
+    <script src="js/ie/respond.min.js"></script>
+    <script src="js/MascaraValidacao.js"></script>
+    <script src="js/bootstrap-colorpicker-module.js"></script>
+    <script src="js/dirPagination.js"></script>
+  <!--  <script src="js/demo.js"></script>-->
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+
+    <!-- inject:js -->
+    <script src="src/index.js"></script>
+    <script src="src/Agendamento/agendamento.js"></script>
+    <script src="src/AlugarApartamento/alugarApe.js"></script>
+    <script src="src/AluguelGaragem/aluguelGaragem.js"></script>
+    <script src="src/Apartamento/partamento.js"></script>
+    <script src="src/ApartamentoMorador/morador.js"></script>
+    <script src="src/Bicicleta/bicicleta.js"></script>
+    <script src="src/Cadastro/cadastro.js"></script>
+    <script src="src/Caixa/caixa.js"></script>
+    <script src="src/CaixaEntrada/caixaEntrada.js"></script>
+    <script src="src/Conta/conta.js"></script>
+    <script src="src/editUser/editUser.js"></script>
+    <script src="src/file/file.js"></script>
+    <script src="src/FotoAlugarApe/fotoApe.js"></script>
+    <script src="src/FotoVendaApe/fotoVendaApe.js"></script>
+    <script src="src/Funcionario/funcionario.js"></script>
+    <script src="src/home/home.js"></script>
+    <script src="src/login/login.js"></script>
+    <script src="src/login/login.logout.service.js"></script>
+    <script src="src/main/header.js"></script>
+    <script src="src/MostrarAgendamento/mostrarAgendamento.js"></script>
+    <script src="src/MostrarAgendamentoEntrada/mostrarAgendamentoEntrada.js"></script>
+    <script src="src/MostrarAgendamentoSaida/mostrarAgendamentoSaida.js"></script>
+    <script src="src/MostrarAlugarApe/mostrarAlugarApe.js"></script>
+    <script src="src/MostrarAluguelGaragemPortaria/mostrarAluguelGaragemPortaria.js"></script>
+    <script src="src/MostrarFotosAlugarApe/mostrarFotoApe.js"></script>
+    <script src="src/MostrarFotosVendaApe/mostrarFotoVendaApe.js"></script>
+    <script src="src/MostrarVendaApe/mostrarVendaApe.js"></script>
+    <script src="src/Ocorrencia/ocorrencia.js"></script>
+    <script src="src/pesquisaFuncionario/pesquisaFuncionario.js"></script>
+    <script src="src/PesquisaMorador/pesquisaMorador.js"></script>
+    <script src="src/pesquisaPrestadorServico/pesquisaPrestadorServico.js"></script>
+    <script src="src/PesquisaProprietario/pesquisaProprietario.js"></script>
+    <script src="src/PesquisaVeiculo/pesquisaVeiculo.js"></script>
+    <script src="src/PrestadorServico/prestadorservico.js"></script>
+    <script src="src/RelatorioJasper/relatorio.js"></script>
+    <script src="src/user/user.js"></script>
+    <script src="src/userTable/usertable.js"></script>
+    <script src="src/utils/interceptor.js"></script>
+    <script src="src/utils/util.filter.js"></script>
+    <script src="src/utils/util.service.js"></script>
+    <script src="src/Veiculo/veiculo.js"></script>
+    <script src="src/VenderApartamento/venderApe.js"></script>
+    <!-- endinject -->
+
+
+    <!-- Directivas criadas para mascaras,fileupload e slides-->
+
+    <script src="Directivas/Mascara/mask.js"></script>
+    <script src="Directivas/Mascara/maskplaca.js"></script>
+    <script src="Directivas/FileUpload/appFilereader.js"></script>
+    <script src="Directivas/Slider/slider.js"></script>
+
+
+</body>
+
+
+</html>

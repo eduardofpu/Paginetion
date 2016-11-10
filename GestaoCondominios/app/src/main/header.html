@@ -1,0 +1,279 @@
+
+  <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" ng-controller="headerSrv">
+  <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+
+    </button>
+    <p><p>
+    <center>
+      <!-- IMAGEM DO USUARIO-->
+      <li ng-show="!authDetails.authenticated">
+      <a href="#/"><img ng-src="../../images/user1.png" width="40" class="img-circle img585_585" /></a>
+      </li>
+      <li ng-show="authDetails.authenticated">
+      <a href="#/"><img ng-src="{{authDetails.mimeType}},{{authDetails.file}}" width="40" class="img-circle img580_580" /></a>
+      </li>
+    </center>
+
+
+
+
+</div>
+
+
+
+
+
+           <!-- Top Menu Items -->
+
+
+           <!-- usuarios-->
+
+
+           <ul class="nav navbar-right top-nav">
+
+
+           <li ng-show="hasAnyPermission(['ROLE_ADMIN'])"class="dropdown">
+           <a href="#" class="dropdown" data-toggle="dropdown">Usuários<i class=""></i> <b class="caret"></b></a>
+           <ul class="dropdown-menu ">
+
+           <li ng-show="hasAnyPermission(['ROLE_ADMIN'])">
+           <a href="#/user">Usuários</a>
+           </li>
+           <li ng-show="hasAnyPermission(['ROLE_ADMIN','ROLE_MORADOR','ROLE_FUNCIONARIO','ROLE_VISITANTE'])">
+           <a href="#/userTable">Editar Perfil</a>
+           </li>
+           </ul>
+           </li>
+
+           <!-- Cadastrar dados dos apartamentos-->
+           <ul class="nav navbar-right top-nav">
+
+           <li ng-show="hasAnyPermission(['ROLE_ADMIN'])" class="dropdown">
+           <a href="#" class="dropdown" data-toggle="dropdown">Cadastrar<i class=""></i> <b class="caret"></b></a>
+           <ul class="dropdown-menu ">
+
+
+          <li ng-show="hasAnyPermission(['ROLE_ADMIN'])"><a href="#/Apartamento">Apartamentos  </a></li>
+          <li ng-show="hasAnyPermission(['ROLE_ADMIN'])"><a href="#/ApartamentoMorador">Morador</a></li>
+          <li ng-show="hasAnyPermission(['ROLE_ADMIN'])"><a href="#/Veiculo">Veiculo</a></li>
+          <li ng-show="hasAnyPermission(['ROLE_ADMIN'])"><a href="#/Bicicleta">Bicicleta</a></li>
+
+
+           </ul>
+           </li>
+
+             <!-- Alugar e vender-->
+           <ul class="nav navbar-right top-nav">
+
+           <li  ng-show="hasAnyPermission(['ROLE_ADMIN','ROLE_MORADOR','ROLE_PROPRIETARIO'])" class="dropdown">
+           <a href="#" class="dropdown" data-toggle="dropdown">Apartamento <i class=""></i> <b class="caret"></b></a>
+           <ul class="dropdown-menu ">
+          <li ng-show="hasAnyPermission(['ROLE_ADMIN','ROLE_MORADOR','ROLE_PROPRIETARIO'])">
+            <a href="#/AlugarApartamento">Alugar </a></li>
+          <li ng-show="hasAnyPermission(['ROLE_ADMIN','ROLE_MORADOR','ROLE_PROPRIETARIO'])">
+            <a href="#/VenderApartamento">Vender </a></li>
+
+
+           </ul>
+           </li>
+
+
+ <!-- Funcionarios-->
+  <ul class="nav navbar-right top-nav">
+
+  <li ng-show="hasAnyPermission(['ROLE_ADMIN'])" class="dropdown">
+  <a href="#" class="dropdown" data-toggle="dropdown">Serviços da Portaria<i class=""></i> <b class="caret"></b></a>
+  <ul class="dropdown-menu ">
+
+
+  <li ng-show="hasAnyPermission(['ROLE_ADMIN'])"><a href="#/Funcionario">Funcionários</a></li>
+  <li ng-show="hasAnyPermission(['ROLE_ADMIN'])"><a href="#/PrestadorServico">Visitantes</a></li>
+  <li ng-show="hasAnyPermission(['ROLE_ADMIN'])"><a href="#/Ocorrencia">Ocorrência</a></li>
+
+
+  </ul>
+  </li>
+
+ <!-- agendamento e alugar garagem-->
+  <ul class="nav navbar-right top-nav">
+
+  <li ng-show="hasAnyPermission(['ROLE_ADMIN','ROLE_MORADOR','ROLE_PROPRIETARIO','ROLE_FUNCIONARIO'])" class="dropdown">
+  <a href="#" class="dropdown" data-toggle="dropdown">Agendamento e alugar garagem<i class=""></i> <b class="caret"></b></a>
+  <ul class="dropdown-menu ">
+
+  <li ng-show="hasAnyPermission(['ROLE_ADMIN','ROLE_PROPRIETARIO','ROLE_MORADOR','ROLE_FUNCIONARIO'])"><a href="#/Agendamento">Agendamento</a></li>
+
+
+  <li ng-show="hasAnyPermission(['ROLE_ADMIN','ROLE_PROPRIETARIO','ROLE_MORADOR','ROLE_FUNCIONARIO'])"><a href="#/AluguelGaragem">Alugar Garagem</a></li>
+
+  </ul>
+  </li>
+
+
+ <!-- contas-->
+  <ul class="nav navbar-right top-nav">
+
+  <li ng-show="hasAnyPermission(['ROLE_ADMIN','ROLE_MORADOR'])"class="dropdown">
+  <a href="#" class="dropdown" data-toggle="dropdown">Contas<i class=""></i> <b class="caret"></b></a>
+  <ul class="dropdown-menu ">
+
+
+
+  <li ng-show="hasAnyPermission(['ROLE_ADMIN'])"><a href="#/Conta">Prestar Contas</a></li>
+  <li ng-show="hasAnyPermission(['ROLE_ADMIN'])"><a href="#/CaixaEntrada">Entrada de Caixa</a></li>
+  <li ng-show="hasAnyPermission(['ROLE_ADMIN','ROLE_MORADOR','ROLE_PROPRIETARIO'])"><a href="#/RelatorioJasper">relatorio</a></li>
+  <li ng-show="hasAnyPermission(['ROLE_ADMIN','ROLE_MORADOR','ROLE_PROPRIETARIO'])"><a href="#/Caixa">Caixa</a></li>
+
+  </ul>
+  </li>
+
+
+
+ <!-- Perfiel e login e logout-->
+
+                <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="fa fa-user"></i>
+
+                 User
+
+                 <b class="caret">
+
+                </b>
+                </a>
+
+                <ul class="dropdown-menu">
+                <li ng-show="hasAnyPermission(['ROLE_ADMIN','ROLE_PROPRIETARIO','ROLE_MORADOR','ROLE_FUNCIONARIO','ROLE_VISITANTE'])">
+                <p>
+                  <a ng-href="#/editUser">
+                  <!-- IMAGEM DO USUARIO-->
+                  <li  ng-show="authDetails.authenticated">
+                  <img ng-src="{{authDetails.mimeType}},{{authDetails.file}}" width="30" class="img-circle img580_580" />
+                   Editar <span class="glyphicon glyphicon-ok"></span></p>
+                  </a>
+                  </li>
+                </li>
+
+
+                <li  ng-show="!authDetails.authenticated">
+                <a href="#/login">
+                <!-- IMAGEM DO USUARIO-->
+                <img ng-src="../../images/user1.png" width="20" class="img-circle img585_585" />  Login
+                 </a>
+                </li>
+
+
+
+                <li class="divider"></li>
+                <li ng-show="authDetails.authenticated">
+                <a href="#/" ng-click="logout()"><i class="fa fa-fw fa-power-off"></i>Log Out</a>
+            </li>
+        </ul>
+      </li>
+  </ul>
+
+<!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+<div class="collapse navbar-collapse navbar-ex1-collapse">
+<ul class="nav navbar-nav side-nav">
+
+
+  <br><br>
+
+
+
+<!-- Pesquisas -->
+  <li ng-show="authDetails.authenticated">
+  <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i>Pesquisas <i class="fa fa-fw fa-caret-down"></i>
+  </a>
+
+
+  <ul id="demo" class="collapse">
+
+
+
+ <li ng-show="hasAnyPermission(['ROLE_ADMIN','ROLE_FUNCIONARIO','ROLE_MORADOR','ROLE_PROPRIETARIO','ROLE_VISITANTE'])">
+  <a href="#/MostrarAlugarApe">Aluguel de Apartamento </a>
+  </li>
+  <li ng-show="hasAnyPermission(['ROLE_ADMIN','ROLE_FUNCIONARIO','ROLE_MORADOR','ROLE_PROPRIETARIO','ROLE_VISITANTE'])">
+  <a href="#/MostrarFotosAlugarApe">Fotos Aluguel  </a>
+  </li>
+  <li ng-show="hasAnyPermission(['ROLE_ADMIN','ROLE_FUNCIONARIO','ROLE_MORADOR','ROLE_PROPRIETARIO','ROLE_VISITANTE'])">
+  <a href="#/MostrarFotosVendaApe">Fotos Venda </a>
+  </li>
+  <li ng-show="hasAnyPermission(['ROLE_ADMIN','ROLE_FUNCIONARIO'])">
+  <a href="#/pesquisaFuncionario">Funcionário</a>
+  </li>
+  <li ng-show="hasAnyPermission(['ROLE_ADMIN','ROLE_FUNCIONARIO','ROLE_MORADOR','ROLE_PROPRIETARIO'])">
+  <a href="#/MostrarAluguelGaragemPortaria">Garagem </a>
+  </li>
+  <li ng-show="hasAnyPermission(['ROLE_ADMIN','ROLE_FUNCIONARIO'])">
+  <a href="#/PesquisaMorador">Morador</a>
+  </li>
+  <li ng-show="hasAnyPermission(['ROLE_ADMIN','ROLE_FUNCIONARIO'])">
+    <a href="#/PesquisaProprietario">Proprietario</a>
+  </li>
+  <li ng-show="hasAnyPermission(['ROLE_ADMIN','ROLE_FUNCIONARIO'])">
+  <a href="#/PesquisaVeiculo">Veiculo</a>
+  </li>
+  <li ng-show="hasAnyPermission(['ROLE_ADMIN','ROLE_FUNCIONARIO','ROLE_MORADOR','ROLE_PROPRIETARIO','ROLE_VISITANTE'])">
+  <a href="#/MostrarVendaApe">Venda de Apartamento </a>
+  </li>
+  <li ng-show="hasAnyPermission(['ROLE_ADMIN','ROLE_FUNCIONARIO','ROLE_MORADOR'])">
+  <a href="#/pesquisaPrestadorServico">Visitantes</a>
+  </li>
+</ul>
+</li>
+
+
+  <li ng-show="hasAnyPermission(['ROLE_ADMIN','ROLE_MORADOR','ROLE_FUNCIONARIO','ROLE_PROPRIETARIO'])">
+  <a href="#/MostrarAgendamento"><i class="fa fa-fw fa-bar-chart-o"></i>
+    Verificar agendamentos </a>
+  </li>
+  <li ng-show="hasAnyPermission(['ROLE_ADMIN','ROLE_FUNCIONARIO'])">
+  <a href="#/MostrarAgendamentoEntrada">Entrada</a>
+  </li>
+  <li ng-show="hasAnyPermission(['ROLE_ADMIN','ROLE_FUNCIONARIO'])">
+  <a href="#/MostrarAgendamentoSaida">Saída</a>
+  </li>
+
+
+
+
+
+
+  <li>
+          <a href="index.html"><i class="fa fa-fw fa-dashboard"></i>Gestão em condomínios</a>
+  </li>
+
+  <center>
+    <li ng-show="!authDetails.authenticated"><a href="#/"><img ng-src="../../images/condominio.jpg" width="100"  /></a>
+    <p><font color="green"><i class="glyphicon glyphicon-thumbs-down"></i>  Você não esta Conectado!</font></p>
+    </li>
+    <li ng-show="authDetails.authenticated">
+    <p><font color="#3232CD"><i class="glyphicon glyphicon-thumbs-up"></i>  Seja bem vindo!</font></p>
+    </li>
+  </center>
+
+
+  </ul>
+  </div>
+
+              <!-- /.navbar-collapse -->
+
+  </nav>
+
+
+
+
+
+
+
+</div>
+<!-- /#wrapper -->

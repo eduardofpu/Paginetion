@@ -1,0 +1,197 @@
+
+
+<div class="jumbotron">
+
+  <div class="container">
+      <div class="row">
+          <div class="col-md-15 col-md-offset-0">
+              <div class="login-panel panel panel-default">
+                  <div class="panel-heading">
+                      <h3 class="panel-title">Veiculos</h3>
+                  </div>
+                  <div class="panel-body">
+
+    <button type="button" ng-hide="showAddEditUser" ng-click="show()" class="btn  btn-primary  btn-lg  aw-btn-full-width">
+       Novo Veiculo
+        </button>
+
+
+
+
+
+
+  <form ng-submit="saveVeiculo(v)" ng-hide="!showAddEditUser" name="form1">
+
+
+
+
+
+
+
+
+
+
+    <div class="form-group">
+      <label>Apartamentos</label>
+      <div >
+        <select  ng-model="v.apv.id">
+           <option ng-repeat="ap_v in aps" value="{{ap_v.id}}">{{ap_v.descricao}}</option>
+         </select>
+      </div>
+    </div>
+
+
+
+
+
+    <div class="form-group">
+      <div ng-class="{'has-error': form1.modelo$touched && (form1.modelo.$error.required) , 'has-success':form1.modelo.$valid}">
+
+            <label>Modelo</label>
+                <input type="text" placeholder="Modelo" ng-model="v.modelo" required name="modelo">
+             </div>
+             </div>
+
+             <div ng-show="form1.modelo.$dirty" >
+                  <div  ng-show="form1.modelo.$error.required" class="alert alert-danger" role="alert">Campo Modelo é obrigatório </div>
+
+              </div>
+
+
+
+            <div class="form-group">
+              <div ng-class="{'has-error': form1.cor$touched && (form1.cor.$error.required) , 'has-success':form1.cor.$valid}">
+
+                  <label>Cor</label>
+                      <input class="form-control" type="text" placeholder="Cor" ng-model="v.cor"  required name="cor">
+               </div>
+               </div>
+
+               <div ng-show="form1.cor.$dirty" >
+                    <div  ng-show="form1.cor.$error.required" class="alert alert-danger" role="alert">Campo Cor é obrigatório </div>
+
+                </div>
+
+
+
+
+      <div class="form-group">
+        <div ng-class="{'has-error': form1.placaveiculo$touched && (form1.placaveiculo.$error.required || form1.placaveiculo.$error.minlength) ,
+            'has-success':form1.placaveiculo.$valid}">
+           <label>Placa</label>
+               <input   class="form-control" type="text" placeholder="HCE-5432" ng-model="v.placa"
+                    placa  ng-minlength=8  maxlength="8"  name="placaveiculo"  required >
+
+                            <span ng-show="form1.placaveiculo.$touched && form1.placaveiculo.$error.minlength" class="label label-danger">
+                              * Placa : Iválida  faltam {{8- placaveiculo.$viewValue.length}}    Nº(s) </span>
+                     </div>
+            </div>
+
+
+
+
+    <div class="form-group">
+      <div ng-class="{'has-error': form1.motorista$touched && (form1.motorista.$error.required) , 'has-success':form1.motorista.$valid}">
+
+        <label>Motorista </label>
+             <input class="form-control" type="text" placeholder="Motorista" ng-model="v.motorista "  name="motorista" required>
+       </div>
+        </div>
+
+        <div ng-show="form1.motorista.$dirty" >
+             <div  ng-show="form1.motorista.$error.required" class="alert alert-danger" role="alert">Campo motorista é obrigatório </div>
+
+         </div>
+
+
+
+  <div class="form-group">
+    <div ng-class="{'has-error': form1.cnh$touched && (form1.cnh.$error.required) , 'has-success':form1.cnh.$valid}">
+
+         <label>CNH</label>
+             <input class="form-control" type="text" placeholder="CNH" ng-model="v.cnh"  required name="cnh">
+      </div>
+        </div>
+        <div ng-show="form1.cnh.$dirty" >
+             <div  ng-show="form1.cnh.$error.required" class="alert alert-danger" role="alert">Campo CNH é obrigatório </div>
+
+         </div>
+
+
+
+
+      <button  class="btn btn-success btn-s"   type="submit">
+             <span class="glyphicon glyphicon-upload"></span> Salvar </button>
+                   <button type="reset"  class="btn btn-danger btn-s">
+                <span class="glyphicon glyphicon-trash"></span>Limpar Nome</button>
+          <button type="button" class="btn btn-success btn-s"  ng-click="hide()">Voltar</button>
+
+
+
+
+  </form>
+<!-- <pre>{{v|json}}</pre> -->
+<br><br>
+
+  <div class="row">
+                    <div class="col-lg-100">
+
+                        <div class="table-responsive" ng-hide="showAddEditUser">
+                            <table class="table table-bordered table-hover table-striped">
+
+                              <div class="blocktext">
+
+                                <div >
+
+                                 <div class="form-group input-group">
+
+                                <input type="text" class="form-control"  ng-model="busca"
+                                 placeholder="Pesquise uma Descricao: " size="30"	maxlength="30" />
+                                 <span class="input-group-addon"><i class="fa fa-search"></i></span>
+
+
+                                   </div>
+                                 </div>
+                                </div>
+
+
+                             <br/>
+
+         <thead>
+            <tr>
+               <th>Modelo</th>
+               <th>Cor</th>
+               <th>Placa</th>
+               <th>Motorista</th>
+               <th>CNH</th>
+                <th>Apartamento</th>
+
+               <th>Editar</th>
+               <th>Deletar</th>
+
+        </tr>
+      </thead>
+      <tbody>
+      <!--  <tr ng-repeat="v in vs|filter:busca" class="active">-->
+        <tr dir-paginate="v in vs|filter:busca |orderBy:'apv.descricao'|orderBy:sortKey:reverse|itemsPerPage:4">
+
+
+          <td>{{ v.modelo }}</td>
+          <td>{{ v.cor }}</td>
+          <td>{{ v.placa }}</td>
+          <td>{{ v.motorista }}</td>
+          <td>{{ v.cnh }}</td>
+          <td>{{ v.apv.descricao }}</td>
+
+
+          <td><button ng-click="editVeiculo(v)" class="btn btn-success btn-s"><span class="glyphicon glyphicon-ok"></span></button></td>
+          <td><button ng-click="deleteVeiculo(v)" class="btn btn-danger btn-s"><span class="glyphicon glyphicon-trash"></span></button></td>
+          <dir-pagination-controls max-size="4" boundary-links="true"></dir-pagination-controls>
+                      
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>

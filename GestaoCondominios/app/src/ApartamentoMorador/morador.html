@@ -1,0 +1,159 @@
+<div class="jumbotron">
+
+  <div class="container">
+      <div class="row">
+          <div class="col-md-15 col-md-offset-0">
+              <div class="login-panel panel panel-default">
+                  <div class="panel-heading">
+                      <h3 class="panel-title">Morador</h3>
+                  </div>
+                  <div class="panel-body">
+    <button type="button" ng-hide="showAddEditUser" ng-click="show()" class="btn  btn-primary  btn-lg  aw-btn-full-width">
+       Novo Morador
+        </button>
+
+  <form ng-submit="saveMorador(m)" ng-hide="!showAddEditUser" name="form" role="form">
+
+    <div ng-show="form.email.$dirty" >
+         <div  ng-show="form.email.$error.required" class="alert alert-danger" role="alert">Campo Email é obrigatório </div>
+            <div  ng-show="form.email.$error.email" class="alert alert-danger" role="alert">Email inválido </div>
+
+
+    </div>
+
+
+    <div ng-show="form.nome.$dirty" >
+      <div  ng-show="form.nome.$error.required" class="alert alert-danger" role="alert">
+     <span>Campo Nome é obrigatório</span></div>
+    </div>
+
+    <div ng-show="form.tel.$dirty" >
+      <div  ng-show="form.tel.$error.required" class="alert alert-danger" role="alert">
+     <span>Campo Telefone é obrigatório</span></div>
+    </div>
+
+
+    <div class="form-group">
+        <label>Apartamentos</label>
+        <div >
+          <select  ng-model="m.ap.id">
+             <option ng-repeat="ap in aps" value="{{ap.id}}">{{ap.descricao}}</option>
+           </select>
+        </div>
+      </div>
+
+
+
+
+
+  <div class="form-group">
+      <div ng-class="{'has-error': theForm.nome$touched && (theForm.nome.$error.required) , 'has-success':theForm.nome.$valid}">
+            <label for="nome">Nome</label>
+                <input class="form-control"  type="text" placeholder="Morador" ng-model="m.nome"
+                id="nome" ng-class="fields.NOME == 'ERROR'? 'input-danger' : ''" required name="nome">
+             </div>
+             <span ng-show="theForm.nome.$touched && theForm.nome.$error.required" class="label label-danger">Ex: João de Oliveira</span>
+          </div>
+
+
+
+
+
+     <div class="form-group">
+       <div ng-class="{'has-error': theForm.tel$touched && (theForm.tel.$error.required || theForm.tel.$error.minlength) ,
+           'has-success':theForm.tel.$valid}">
+       <label>FONE</label>
+            <input  name="tel" ng-minlength=13  maxlength="13" class="form-control"  type="text" placeholder="(34)3222-4011"
+           mask="(00)0000-0000"  ng-model="m.fone" required>
+
+           <span ng-show="theForm.tel.$touched && theForm.tel.$error.minlength" class="label label-danger">
+             * TELEFONE : Iválido   faltam {{13- theForm.tel.$viewValue.length}}    Nº(s) </span>
+    </div>
+ </div>
+
+
+
+
+
+
+
+
+ <div class="form-group input-group">
+                                 <span class="input-group-addon">@</span>
+   <div class="form-group" ng-class="{'has-error': form.email.$invalid ,'has-success': form.email.$valid}">
+
+   <input for="email" name="email"  type="email" class="form-control"   type="email" placeholder="Email" ng-model="m.email"
+    autofocus required >
+  </div>
+ </div>
+
+
+
+                <button  ng-disabled="form.$invalid" class="btn btn-success btn-s"   type="submit">
+                       <span class="glyphicon glyphicon-upload"></span> Salvar </button>
+                             <button type="reset"  class="btn btn-danger btn-s">
+                          <span class="glyphicon glyphicon-trash"></span>Limpar Nome</button>
+                    <button type="button" class="btn btn-success btn-s"  ng-click="hide()">Voltar</button>
+  </form>
+  <br><br>
+
+  <div class="row">
+                   <div class="col-lg-100">
+                       <h2>Contextual Classes</h2>
+                       <div class="table-responsive" ng-hide="showAddEditUser">
+                           <table class="table table-bordered table-hover table-striped">
+
+                             <div class="blocktext">
+
+                               <div >
+
+                                <div class="form-group input-group">
+
+                               <input type="text" class="form-control"  ng-model="busca"
+                                placeholder="Pesquise uma Descricao: " size="30"	maxlength="30" />
+                                <span class="input-group-addon"><i class="fa fa-search"></i></span>
+
+
+                                  </div>
+                                </div>
+                               </div>
+
+
+                            <br/>
+         <thead>
+            <tr>
+               <th>Nome</th>
+               <th>Telefone</th>
+               <th>Email</th>
+               <th>Descrição</th>
+
+               <th>Editar</th>
+               <th>Deletar</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <!--<tr ng-repeat="m in ms|filter:busca" class="active">-->
+
+          <tr dir-paginate="m in ms|filter:busca |orderBy:'ap.descricao'|orderBy:sortKey:reverse|itemsPerPage:4">
+
+          <td>{{ m.nome }}</td>
+          <td>{{ m.fone }}</td>
+          <td>{{ m.email }}</td>
+          <td>{{ m.ap.descricao }}</td>
+
+
+
+          <td><button ng-click="editMorador(m)" class="btn btn-success btn-s"><span class="glyphicon glyphicon-ok"></span></button></td>
+          <td><button ng-click="deleteMorador(m)" class="btn btn-danger btn-s"><span class="glyphicon glyphicon-trash"></span></button></td>
+
+          <dir-pagination-controls max-size="4" boundary-links="true"></dir-pagination-controls>
+
+
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>

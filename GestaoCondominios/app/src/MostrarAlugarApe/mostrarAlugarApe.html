@@ -1,0 +1,68 @@
+
+<div class="jumbotron">
+
+  <div class="container">
+      <div class="row">
+          <div class="col-md-15 col-md-offset-1">
+              <div class="login-panel panel panel-default">
+                  <div class="panel-heading">
+                      <br/><h3>Apartamentos para Alugar</h3>
+                  </div>
+                  <div class="panel-body">
+
+
+                    <div class="row">
+                                       <div class="col-lg-100">
+ <div class="table-responsive">
+
+<table class="table table-bordered table-hover table-striped">
+
+  <div class="blocktext">
+
+    <div >
+
+     <div class="form-group input-group">
+
+    <input type="text" class="form-control"  ng-model="busca"
+     placeholder="Pesquise uma Descricao: " size="30"	maxlength="30" />
+     <span class="input-group-addon"><i class="fa fa-search"></i></span>
+
+
+       </div>
+     </div>
+    </div>
+
+
+ <br/>
+    <thead>
+      <tr>
+
+        <th>Valor</th>
+
+        <th>Apartamento</th>
+        <th>Proprietário</th>
+        <th>Contato</th>
+
+
+      </tr>
+    </thead>
+    <tbody>
+    <!--  <tr ng-repeat="mostrarApe in mostrarApes|filter:busca" class="active">-->
+
+        <tr dir-paginate="mostrarApe in mostrarApes|filter:busca |orderBy:sortKey:reverse|itemsPerPage:4">
+
+
+        <td><font color="green">{{ mostrarApe.valor }}</font></td>
+
+        <td>{{ mostrarApe.userAlugarApe.userid.descricao}}</td> <!-- Nome do Apartamento do Usuário  morador na tabela Apartamento-->
+        <td><font color="blue">{{ mostrarApe.userAlugarApe.userid.nome}}</font></td> <!-- Nome do Usuário  na tabela UserEntity-->
+        <td><font color="orange">{{ mostrarApe.userAlugarApe.userid.fone}}</font></td>
+
+        <dir-pagination-controls max-size="4" boundary-links="true"></dir-pagination-controls>
+
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+</div></div>

@@ -1,0 +1,93 @@
+<!--Para utilizar mascaras de números-->
+
+<!--    dependencia colocalas dentro do index.html na seguinte ordem para funcionar corretamente
+<script src="js/jquery.js"></script>
+<script src="js/angular.js"></script>
+<script src="js/jquery.mask.js"></script>
+<script src="js/jquery.min.js"></script>
+
+
+-->
+
+<!--Obs  ou  para utilizar uma pasta criada : Mascara/mask.js
+
+<div class="form-group">
+    <label>CPF</label>
+       <input id="cpf" name="cpf" value="" class="form-control"  class="form-control"  type="text" placeholder="055234567-00"
+       mask="000.000.000-00" maxlength="14" ng-model="fileupload.cpf">
+</div>
+
+
+-->
+
+<!--
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\Função para criar mascaras de cpf ,fone ,data e cepe\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+'use strict';
+
+angular.module('mutrack')  //  <script src="js/jquery.mask.js"></script>
+
+      .directive('mask',function() {
+         return {
+             restrict: 'A',
+                  link: function postLink(scope,element,attrs) {
+
+            element.mask(attrs.mask);
+
+               }
+          };
+ });
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\Função para criar mascaras para placas de veículos\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+ 'use strict';
+
+ angular.module('mutrack')  //  <script src="js/jquery.maskedinput.js"></script>
+
+       .directive('placa',function() {
+          return {
+              restrict: 'A',
+              link : function(scope, element, attrs) {
+
+                 // $(element).mask("aaa-9999",{placeholder:" "});
+                 $(element).mask('aaa-9999');
+
+                 element.mask(attrs.placa);
+                }
+           };
+  });
+
+
+
+  \\\\\\\\\\\\\\\\\\\\\As duas funções citadas acima mescladas\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+                Poderia ficar tudo dentro de um arquivo mascara.js
+                   conforme abaixo
+Aqui podemos ver duas diretivas criadas mask e placa , as quais podem serem chamadas nos input do html.
+
+                   'use strict';
+
+                   angular.module('mutrack')  //  <script src="js/jquery.mask.js"></script>
+
+                         .directive('mask',function() { // mask e uma diretiva criada
+                            return {
+                                restrict: 'A',
+                                     link: function postLink(scope,element,attrs) {
+
+                               element.mask(attrs.mask);
+
+                                  }
+                             };
+                    })
+
+                    .directive('placa',function() { // placa e uma diretiva criada
+                       return {
+                           restrict: 'A',
+                           link : function(scope, element, attrs) {
+
+                              // $(element).mask("aaa-9999",{placeholder:" "});
+                              $(element).mask('aaa-9999');
+
+                              element.mask(attrs.placa);
+                             }
+                        };
+               });
+-->

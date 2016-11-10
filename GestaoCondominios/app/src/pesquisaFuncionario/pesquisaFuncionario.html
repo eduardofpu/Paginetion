@@ -1,0 +1,125 @@
+<div class="jumbotron">
+
+  <div class="container">
+      <div class="row">
+          <div class="col-md-10 col-md-offset-1">
+              <div class="login-panel panel panel-default">
+                  <div class="panel-heading">
+                    <center>  <h3 class="panel-title">Pesquisar Funcionários</h3></center>
+                  </div>
+                  <div class="panel-body">
+
+                      <a  ng-hide="showF" ng-click="show()" > </a>
+
+
+<!--Form salvar Funcionario-->
+<form   ng-submit="salvarFuncionario (ff)" ng-hide="!showF">
+
+      <div>
+               <label>NOME FUNCIONÁRIO</label>
+                      <input class="form-control"  type="text" placeholder="Nome"  ng-model="ff.funcionario" name="nome" required>
+                   </div>
+
+                   <div>
+                          <label>Fone:</label>
+                               <input  mask="(00)0000-0000" class="form-control"  type="text" placeholder="Fone"  ng-model="ff.fone" name="fone" required>
+                            </div>
+
+
+
+                   <center  ><img ng-src="{{ff.mimeType}},{{ff.file}}" width="200" class="img-circle img80_80" /></center>
+
+
+                <button  ng-disabled="form1.$invalid" class="btn btn-success btn-s"   type="submit">
+                  <span class="glyphicon glyphicon-upload"></span> Editar </button>
+                  <button type="reset"  class="btn btn-danger btn-s">
+                  <span class="glyphicon glyphicon-trash"></span>Limpar Nome</button>
+                <button type="button" class="btn btn-success btn-s"  ng-click="hide()">Voltar</button>
+
+
+  </form>
+
+
+
+<!--Form Buscar Funcionario-->
+        <form   ng-submit="buscaFuncionario(ff)" ng-hide="showF">
+          <button type="button" value="Voltar" onClick="history.go(-0)" class="btn btn-warning">
+                  <i class="glyphicon glyphicon-refresh"></i>
+          		  Atualizar </button>
+
+                <div class="blocktext">
+
+                  <div >
+
+                   <div class="form-group input-group">
+
+                  <input type="text" class="form-control"  ng-model="busca"
+                   placeholder="Pesquise uma Descricao: " size="30"	maxlength="30" />
+                   <span class="input-group-addon"><i class="fa fa-search"></i></span>
+
+
+                     </div>
+                   </div>
+                  </div>
+
+
+               <br/>
+
+
+ <!--  <pre >{{fs   | json}}</pre> -->
+
+ <div class="row">
+  <div class="col-lg-20">
+
+    <div class="table-responsive">
+<center>
+
+
+     <table class="table table-hover">
+      <thead>
+            <tr>
+            <th>IMAGE</th>
+            <th>FUNCIONÁRIO</th>
+            <th>CPF</th>
+            <th>RG</th>
+            <th>Telefone</th>
+
+            <th>Editar</th>
+            <th>Deletar</th>
+
+            </tr>
+            </thead>
+            <tbody>
+          <!-- <tr ng-repeat="ff in ffs| filter: busca " data-toggle="popover"
+           data-trigger="hover" data-placement="top"  class="active">-->
+
+           <tr dir-paginate="ff in ffs|filter:busca |orderBy:sortKey:reverse|itemsPerPage:3">
+
+
+
+
+           <td> <img ng-src="{{ff.mimeType}},{{ff.file}}" width="50" /></td>
+           <td><font color="green">{{ ff.funcionario }}</font></td>
+           <td>{{ ff.cpf }}</td>
+           <td>{{ ff.rg }}</td>
+           <td><font color="orange">{{ ff.fone }}</font></td>
+
+           <td ><button ng-click="editFile(ff)" class="btn btn-success btn-s"><span class="glyphicon glyphicon-ok"></span></button></td>
+           <td ><button ng-click="deleteFile(ff)" class="btn btn-danger btn-s"><span class="glyphicon glyphicon-trash"></span></button></td>
+
+
+          </tr>
+        </tbody>
+      </table>
+      <dir-pagination-controls max-size="3" boundary-links="true"></dir-pagination-controls>
+
+
+    </div>
+</div>
+
+</form>
+
+
+
+
+</div>

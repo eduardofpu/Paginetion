@@ -1,0 +1,159 @@
+<!--Para utilizar mascaras com letras ou números-->
+
+
+<!--    dependencia colocalas dentro do index.html na seguinte ordem para funcionar corretamente
+<script src="js/jquery.js"></script>
+<script src="js/angular.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.maskedinput.js"></script>
+
+-->
+
+<!--Obs  Para utilizar somente java script-->
+
+<!--
+<script type="text/javascript">
+     jQuery.noConflict();
+         jQuery(function($){
+      $("#placa").mask("aaa - 9999",{placeholder:" "});
+
+    });
+</script>
+
+<div class="form-group">
+  <label for="placa">Placa</label>
+  <input  class="form-control"  class="form-control"  type="text" placeholder="HEE-2025"
+   maxlength="8" ng-model="al.placa"  id="placa">
+</div>
+
+
+-->
+
+<!--Obs  ou  para utilizar uma pasta criada : Mascara/maskplaca.js
+
+<div class="form-group">
+  <label>Placa</label>
+  <input  class="form-control"  class="form-control"  type="text" placeholder="HEE-2025"
+   maxlength="8" ng-model="al.placa"   placa>
+</div>
+
+
+-->
+
+<!--
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\ Função de exemplo \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+                          Porém eu a modifiquei simplificando-a.
+                          Veja na pasta Mascara\maskplaca.js
+                                  ou
+                          na apartir da linha 90 neste mesmo arquivo        
+
+'use strict';
+angular.module("mutrack")
+
+.directive("placaDir", PlacaDir);
+
+function  PlacaDir() {
+  return {
+
+
+    link : function(scope, element, attrs) {
+        var options = {
+            onKeyPress: function(val, e, field, placeholder) {
+                putMask();
+            }
+        }
+
+        $("#placa").mask("aaa-9999",{placeholder:" "});
+
+        function putMask() {
+            var mask;
+            var cleanVal = element[0].value.replace(/\D/g, '');//pega o valor sem mascara
+            if(cleanVal.length <=8) {//verifica a quantidade de digitos.
+                mask = "aaa-9999";
+            } else {
+                mask = "";
+            }
+          $(element).mask(mask, placeholder);//aplica a mascara novamente
+
+
+        }
+    }
+  }
+}
+
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+-->
+<!--
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\Função para criar mascaras de cpf ,fone ,data e cepe\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+'use strict';
+
+angular.module('mutrack')  //  <script src="js/jquery.mask.js"></script>
+
+      .directive('mask',function() {
+         return {
+             restrict: 'A',
+                  link: function postLink(scope,element,attrs) {
+
+            element.mask(attrs.mask);
+
+               }
+          };
+ });
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\Função para criar mascaras para placas de veículos\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+ 'use strict';
+
+ angular.module('mutrack')  //  <script src="js/jquery.maskedinput.js"></script>
+
+       .directive('placa',function() {
+          return {
+              restrict: 'A',
+              link : function(scope, element, attrs) {
+
+                 // $(element).mask("aaa-9999",{placeholder:" "});
+                 $(element).mask('aaa-9999');
+
+                 element.mask(attrs.placa);
+                }
+           };
+  });
+
+
+
+  \\\\\\\\\\\\\\\\\\\\\As duas funções citadas acima mescladas\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+                Poderia ficar tudo dentro de um arquivo mascara.js
+                   conforme abaixo
+Aqui podemos ver duas diretivas criadas mask e placa , as quais podem serem chamadas nos input do html.
+
+                   'use strict';
+
+                   angular.module('mutrack')  //  <script src="js/jquery.mask.js"></script>
+
+                         .directive('mask',function() { // mask e uma diretiva criada
+                            return {
+                                restrict: 'A',
+                                     link: function postLink(scope,element,attrs) {
+
+                               element.mask(attrs.mask);
+
+                                  }
+                             };
+                    })
+
+                    .directive('placa',function() { // placa e uma diretiva criada
+                       return {
+                           restrict: 'A',
+                           link : function(scope, element, attrs) {
+
+                              // $(element).mask("aaa-9999",{placeholder:" "});
+                              $(element).mask('aaa-9999');
+
+                              element.mask(attrs.placa);
+                             }
+                        };
+               });
+-->

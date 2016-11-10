@@ -1,0 +1,81 @@
+
+
+
+
+
+<form   ng-submit="buscaEmpresa(age)" >
+
+
+<div class="jumbotron">
+
+  <div class="container">
+      <div class="row">
+          <div class="col-md-11 col-md-offset-1">
+              <div class="login-panel panel panel-default">
+                  <div class="panel-heading">
+                    <br/><h3>Entrada e saída de prestador de Serviço</h3>
+                  </div>
+                  <div class="panel-body">
+
+
+
+                    <div class="blocktext">
+                        <div class="form-group input-group">
+                       <input type="text" class="form-control"  ng-model="busca"	id="buscar"
+                           placeholder="Pesquise uma Descricao: " size="30"	maxlength="30" />
+                           <span class="input-group-addon"><i class="fa fa-search"></i></span>
+
+                          </div>
+                         </div>
+                         </div>
+
+
+                       <br/>
+
+
+
+
+
+<div class="row">
+<div class="col-lg-12">
+
+  <div class="table-responsive">
+
+   <table class="table table-bordered table-hover table-striped">
+    <thead>
+      <tr>
+
+        <th>Descrição</th>
+        <th>data</th>
+        <th>Previsão</th>
+        <th>Entrada</th>
+        <th>Saída</th>
+        <th>empresa</th>
+        <th>Local do agendamento</th>
+        <th>Solicitante</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr dir-paginate="age in ages|filter:busca |orderBy:sortKey:reverse|itemsPerPage:4">
+
+
+    <!--  <tr ng-repeat="age in ages| filter: busca "   class="active">-->
+
+        <td><font color="green">{{age.descricao }}</font></td>
+        <td><font color="black">{{age.data | date : "dd/MM/yyyy " }}</font></td>
+        <td><font color="black">{{age.hora | date : "HH:mm "}}</font></td>
+        <td><font color="blue">{{age.horaentrada | date : "HH:mm "}}</font></td>
+        <td><font color="orange">{{age.horasaida | date : "HH:mm "}}</font></td>
+        <td><font color="black">{{age.empresa }}</font></td>
+        <td><font color="red">{{age.userAgenda.userid.descricao}}</font></td> <!-- Nome do Apartamento do Usuário  morador na tabela Apartamento-->
+        <td><font color="black">{{age.userAgenda.name}}</font></td> <!-- Nome do Usuário  na tabela UserEntity-->
+
+  <dir-pagination-controls max-size="4" boundary-links="true"></dir-pagination-controls>
+       </tr>
+      </tbody>
+     </table>
+    </div>
+  </div>
+
+</div>
+</form>

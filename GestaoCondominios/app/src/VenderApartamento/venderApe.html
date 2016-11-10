@@ -1,0 +1,122 @@
+<div class="jumbotron">
+
+  <div class="container">
+      <div class="row">
+          <div class="col-md-10col-md-offset-1">
+              <div class="login-panel panel panel-default">
+                  <div class="panel-heading">
+                        <br/><h3>Apartamentos para Venda</h3><p>
+                        <span class="  glyphicon glyphicon-camera" aria-hidden="true"></span>
+                  </div>
+                  <div class="panel-body">
+
+
+
+<nav class="navbar navbar-inverse" ng-controller="headerSrv">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+      <li class="dropdown" ng-show="hasAnyPermission(['ROLE_ADMIN','ROLE_PROPRIETARIO','ROLE_MORADOR','ROLE_FUNCIONARIO','ROLE_VISITANTE'])">
+        <ul class="dropdown-menu">
+
+        </ul>
+      </li>
+
+  <li ng-show="hasAnyPermission(['ROLE_ADMIN','ROLE_PROPRIETARIO'])" >
+    <a ng-href="#/FotoVendaApe">Tire fotos para vender o apartamento aqui!
+     <span class="  glyphicon glyphicon-camera" aria-hidden="true"></span>
+    </a>
+  </li>
+
+
+
+   <li ng-show="!authDetails.authenticated"><a href="#/login">Login<span class="caret"></span></a></li>
+    </ul>
+  </div>
+</nav>
+
+
+
+
+<div>
+  <button type="button" ng-hide="showAddVenderApe" ng-click="show()" class="btn  btn-primary  btn-lg  aw-btn-full-width">
+  Nova Venda de Apartamento
+  </button>
+
+  <form ng-submit="saveVenderApe(venderApe)" ng-hide="!showAddVenderApe" name="theForm" role="theForm">
+
+
+
+    <div class="form-group">
+      <div ng-class="{'has-error': theForm.valor$touched && (theForm.valor.$error.required) , 'has-success':theForm.volor.$valid}">
+
+         <label>Valor: </label>
+         <div class="form-group input-group">
+         <span class="input-group-addon">$</span>
+              <input  class="form-control" type="number" placeholder="Valor" ng-model="venderApe.valor " name="valor" required>
+              <span class="input-group-addon">.00</span>
+        </div>
+
+      </div>
+        </div>
+
+      <div ng-show="theForm.valor.$dirty" >
+      <div  ng-show="theForm.valor.$error.required" class="alert alert-danger" role="alert">Somente números </div>
+
+
+      </div>
+
+
+
+      <button  class="btn btn-success btn-s"   type="submit">
+             <span class="glyphicon glyphicon-upload"></span> Salvar </button>
+                   <button type="reset"  class="btn btn-danger btn-s">
+                <span class="glyphicon glyphicon-trash"></span>Limpar Nome</button>
+          <button type="button" value="Voltar" onClick="history.go(-1)" class="btn btn-danger btn-s">Voltar </button>
+            <button type="button" class="btn btn-success btn-s"  ng-click="hide()">Cancel</button>
+
+  </form>
+<br><br>
+
+
+  <div class="row">
+     <div class="col-lg-100">
+
+     <div class="table-responsive">
+      <table class="table table-bordered table-hover table-striped">
+      <thead>
+        <tr>
+          <th>Valor</th>
+          <th>Apartamento</th>
+          <th>Proprietário</th>
+          <th>Contato</th>
+
+          <th>Editar</th>
+          <th>Deletar</th>
+
+        </tr>
+      </thead>
+      <tbody>
+      <!--  <tr ng-repeat="venderApe in venderApes" class="active">-->
+
+          <tr dir-paginate="venderApe in venderApe |orderBy:sortKey:reverse|itemsPerPage:4">
+
+
+          <td>{{ venderApe.valor }}</td>
+          <td>{{ venderApe.userVenderApe.userid.descricao}}</td> <!-- Nome do Apartamento do Usuário  morador na tabela Apartamento-->
+          <td>{{ venderApe.userVenderApe.userid.nome}}</td>
+          <td>{{ venderApe.userVenderApe.userid.fone}}</td>
+
+
+
+          <td><button ng-click="editVenderApe(venderApe)" class="btn btn-success btn-s"><span class="glyphicon glyphicon-ok"></span></button></td>
+          <td><button ng-click="deleteVenderApe(venderApe)" class="btn btn-danger btn-s"><span class="glyphicon glyphicon-trash"></span></button></td>
+          <dir-pagination-controls max-size="4" boundary-links="true"></dir-pagination-controls>
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+</div>
+</div>

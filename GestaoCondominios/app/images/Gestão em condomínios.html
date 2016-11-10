@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<!-- saved from url=(0033)http://localhost:8081/#/userTable -->
+<html lang="en" ng-app="mutrack" class="ng-scope"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
+
+    <title>Gestão em condomínios</title>
+		
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="description" content="">
+    <meta name="author" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- Bootstrap Core CSS -->
+        <link href="./Gestão em condomínios_files/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom CSS -->
+        <link href="./Gestão em condomínios_files/sb-admin.css" rel="stylesheet">
+
+        <!-- Custom Fonts -->
+        <link href="./Gestão em condomínios_files/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+	<!-- inject:css -->
+
+
+
+	<link rel="stylesheet" href="./Gestão em condomínios_files/login.css">
+
+
+
+	<!-- endinject -->
+
+</head>
+
+<body>
+
+
+
+<!-- Wrapper -->
+		<div id="wrapper">
+		  <!-- Header -->
+			<!-- ngInclude: 'src/main/header.html' --><header ng-include="&#39;src/main/header.html&#39;" id="header" class="ng-scope">  <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top ng-scope" role="navigation" ng-controller="headerSrv">
+  <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+
+                <li>
+
+                    <div>
+                      <h3 ng-show="!authDetails.authenticated" class="ng-hide"><a href="http://localhost:8081/#/"><img ng-src="../../images/user1.png" width="31" class="img-circle img585_585" src="./Gestão em condomínios_files/user1.png"></a></h3>
+                      <h3 ng-show="authDetails.authenticated"><a href="http://localhost:8081/#/"><img ng-src="data:image/jpeg;base64,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" width="31" class="img-circle img580_580" src="data:image/jpeg;base64,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"></a></h3>
+
+                    </div>
+
+                </li>
+
+
+
+
+
+            </div>
+
+           <!-- Top Menu Items -->
+  <ul class="nav navbar-right top-nav">
+
+  <li class="dropdown">
+  <a href="http://localhost:8081/#" class="dropdown" data-toggle="dropdown">Cadastrar<i class=""></i> <b class="caret"></b></a>
+  <ul class="dropdown-menu ">
+
+  <li ng-show="hasAnyPermission([&#39;ROLE_ADMIN&#39;])"><a href="http://localhost:8081/#/user">Usuários</a></li>
+  <li ng-show="hasAnyPermission([&#39;ROLE_ADMIN&#39;,&#39;ROLE_MORADOR&#39;,&#39;ROLE_FUNCIONARIO&#39;,&#39;ROLE_VISITANTE&#39;])"><a href="http://localhost:8081/#/userTable">Editar Perfil</a></li>
+
+ <li ng-show="hasAnyPermission([&#39;ROLE_ADMIN&#39;])"><a href="http://localhost:8081/#/Apartamento">Apartamentos  </a></li>
+ <li ng-show="hasAnyPermission([&#39;ROLE_ADMIN&#39;])"><a href="http://localhost:8081/#/ApartamentoMorador">Morador</a></li>
+ <li ng-show="hasAnyPermission([&#39;ROLE_ADMIN&#39;])"><a href="http://localhost:8081/#/Veiculo">Veiculo</a></li>
+ <li ng-show="hasAnyPermission([&#39;ROLE_ADMIN&#39;])"><a href="http://localhost:8081/#/Bicicleta">Bicicleta</a></li>
+
+ <li ng-show="hasAnyPermission([&#39;ROLE_ADMIN&#39;])"><a href="http://localhost:8081/#/AlugarApartamento">Alugar Apartamento</a></li>
+ <li ng-show="hasAnyPermission([&#39;ROLE_ADMIN&#39;])"><a href="http://localhost:8081/#/VenderApartamento">Vender Apartamento</a></li>
+
+  <li ng-show="hasAnyPermission([&#39;ROLE_ADMIN&#39;])"><a href="http://localhost:8081/#/Funcionario">Funcionários</a></li>
+  <li ng-show="hasAnyPermission([&#39;ROLE_ADMIN&#39;])"><a href="http://localhost:8081/#/PrestadorServico">Prestadores de Serviço</a></li>
+  <li ng-show="hasAnyPermission([&#39;ROLE_ADMIN&#39;])"><a href="http://localhost:8081/#/Ocorrencia">Ocorrência</a></li>
+
+  <li ng-show="hasAnyPermission([&#39;ROLE_ADMIN&#39;])"><a href="http://localhost:8081/#/Conta">Prestar Contas</a></li>
+  <li ng-show="hasAnyPermission([&#39;ROLE_ADMIN&#39;])"><a href="http://localhost:8081/#/Caixa">Fundo de Caixa</a></li>
+  <li ng-show="hasAnyPermission([&#39;ROLE_ADMIN&#39;,&#39;ROLE_MORADOR&#39;])"><a href="http://localhost:8081/#/AlugarGaragem">Alugar Garagem</a></li>
+  <li ng-show="hasAnyPermission([&#39;ROLE_ADMIN&#39;,&#39;ROLE_MORADOR&#39;])"><a href="http://localhost:8081/#/Agendamento">Agendamento</a></li>
+
+  </ul>
+  </li>
+
+
+
+
+                <li class="dropdown">
+                    <a href="http://localhost:8081/#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> User <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+
+          <li ng-show="hasAnyPermission([&#39;ROLE_ADMIN&#39;,&#39;ROLE_PROPRIETARIO&#39;,&#39;ROLE_MORADOR&#39;,&#39;ROLE_FUNCIONARIO&#39;,&#39;ROLE_VISITANTE&#39;])">
+                       <p><a class="btn btn-lg btn-success" ng-href="#/editUser" href="http://localhost:8081/#/editUser">Editar dados!
+                       <span class="glyphicon glyphicon-ok"></span></a></p>  </li>
+
+
+                        <li ng-show="!authDetails.authenticated" class="ng-hide">
+                            <a href="http://localhost:8081/#/login"><i class="fa fa-fw fa-user"></i>Login</a>
+                        </li>
+
+
+                        <li ng-show="authDetails.authenticated">
+                            <a href="http://localhost:8081/#/" ng-click="logout()"><i class="fa fa-fw fa-gear"></i> Sair</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="http://localhost:8081/#/"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+<!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+
+
+          <li ng-show="hasAnyPermission([&#39;ROLE_ADMIN&#39;,&#39;ROLE_MORADOR&#39;])"><a href="http://localhost:8081/#/AlugarGaragem">Alugar Garagem</a></li>
+                    <li ng-show="hasAnyPermission([&#39;ROLE_ADMIN&#39;,&#39;ROLE_MORADOR&#39;])">
+                        <a href="http://localhost:8081/#/VenderApartamento"><i class="fa fa-fw fa-bar-chart-o"></i>Vender</a>
+
+
+                    </li>
+
+
+
+   <li ng-show="hasAnyPermission([&#39;ROLE_ADMIN&#39;,&#39;ROLE_FUNCIONARIO&#39;,&#39;ROLE_MORADOR&#39;,&#39;ROLE_PROPRIETARIO&#39;])"><a href="http://localhost:8081/#/MostrarAluguelGaragemPortaria">Garagem </a></li>
+   <li ng-show="hasAnyPermission([&#39;ROLE_ADMIN&#39;,&#39;ROLE_FUNCIONARIO&#39;,&#39;ROLE_MORADOR&#39;,&#39;ROLE_PROPRIETARIO&#39;])"><a href="http://localhost:8081/#/MostrarAgendamento">Agendamento </a></li>
+
+   <li ng-show="hasAnyPermission([&#39;ROLE_ADMIN&#39;,&#39;ROLE_FUNCIONARIO&#39;,&#39;ROLE_MORADOR&#39;,&#39;ROLE_PROPRIETARIO&#39;])"><a href="http://localhost:8081/#/MostrarAlugarApe">Aluguel de Apartamento </a></li>
+   <li ng-show="hasAnyPermission([&#39;ROLE_ADMIN&#39;,&#39;ROLE_FUNCIONARIO&#39;,&#39;ROLE_MORADOR&#39;,&#39;ROLE_PROPRIETARIO&#39;])"><a href="http://localhost:8081/#/MostrarVendaApe">Venda de Apartamento </a></li>
+   <li ng-show="hasAnyPermission([&#39;ROLE_ADMIN&#39;,&#39;ROLE_FUNCIONARIO&#39;,&#39;ROLE_MORADOR&#39;,&#39;ROLE_PROPRIETARIO&#39;])"><a href="http://localhost:8081/#/MostrarFotosAlugarApe">Fotos Aluguel  </a></li>
+   <li ng-show="hasAnyPermission([&#39;ROLE_ADMIN&#39;,&#39;ROLE_FUNCIONARIO&#39;,&#39;ROLE_MORADOR&#39;,&#39;ROLE_PROPRIETARIO&#39;])"><a href="http://localhost:8081/#/MostrarFotosVendaApe">Fotos Venda </a></li>
+
+
+
+
+
+
+                    <li ng-show="authDetails.authenticated">
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Pesquisas <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="demo" class="collapse">
+                            <li ng-show="hasAnyPermission([&#39;ROLE_ADMIN&#39;])"><a href="http://localhost:8081/#/pesquisaFuncionario">Funcionário</a></li>
+                            <li ng-show="hasAnyPermission([&#39;ROLE_ADMIN&#39;])"><a href="http://localhost:8081/#/pesquisaPrestadorServico">Visitantes</a></li>
+                        </ul>
+                    </li>
+                    <li ng-show="!authDetails.authenticated" class="ng-hide"><a href="http://localhost:8081/#/Cadastro">Faça seu cadastro aqui!</a></li>
+                    <li>
+                        <a href="http://localhost:8081/index.html"><i class="fa fa-fw fa-dashboard"></i>Gestão em condomínios</a>
+                    </li>
+                </ul>
+            </div>
+
+              <!-- /.navbar-collapse -->
+
+        </nav>
+
+        <div id="page-wrapper" class="ng-scope">
+
+            <div class="container-fluid">
+              <!-- Page Heading -->
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                          Gestão em condomínios
+                            <small>Faça uma visita</small>
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li ng-show="!authDetails.authenticated" class="ng-hide">
+                                <i class="fa fa-dashboard"></i>  <a href="http://localhost:8081/#/login">Login</a>
+                            </li>
+                            <li class="active">
+                                <i class="fa fa-file"></i> Contato (34)9996516835
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- /.row -->
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+  <!-- /#page-wrapper -->
+
+
+<!-- /#wrapper -->
+</header>
+
+
+
+
+       <!-- Main -->
+			<div id="main">
+				<!-- Post -->
+				<article class="post">
+					<!-- ngView:  --><ng-view class="ng-scope"><div class="jumbotron ng-scope">
+
+  <div class="container">
+      <div class="row">
+          <div class="col-md-7 col-md-offset-3">
+              <div class="login-panel panel panel-default">
+                  <div class="panel-heading">
+                      <h3 class="panel-title">Please Sign In</h3>
+                  </div>
+                  <div class="panel-body">
+
+
+  <form ng-submit="saveUser(user)" ng-hide="!showAddEditUser" class="ng-pristine ng-invalid ng-invalid-required ng-valid-minlength ng-valid-maxlength ng-valid-email">
+
+
+      <center><img width="150" class="img-circle img80_80" ng-src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAH0AfQMBEQACEQEDEQH/xAAcAAEAAQUBAQAAAAAAAAAAAAAAAQMEBQYHAgj/xABAEAABAwIDAwgHBQYHAAAAAAABAAIDBAUGERMSIWEXMUFRVXGT0gcUIlKBkdEjMqGxwUJDgqKy8AgWMzRic5L/xAAaAQEAAwEBAQAAAAAAAAAAAAAAAwQFAgEG/8QAKREBAAICAQMCBQUBAAAAAAAAAAECAxEEEiExIkEFEzJRkSMzYXGBQv/aAAwDAQACEQMRAD8A7ggICAgICAgICAgICAgICAgIJQEBAQYTEeJaKxRgTEyVDhmyBh3kdZ6gqvI5VMEd/P2TYsNsnjw5/ccb3qsedKdtJH0MhaP6jv8AyWRk5+e89p1C9Ti46+e7ESXi6SHN9yrCeM7vqq858s/9T+UvyqfZWpsQ3mldtQ3Op7nv2x8nZhdU5Oani0uZw458w27D+PhI9sF7a1me4VLBk3+IdHeFo8f4luenL+VXLxNRujfGua9oc0gtIzBHMVrRO1J6QEBAQEEIJQEBBYXy5R2i11FdIM9Jvst953QPmos2WMVJvPs7pSb2isOJ1dXPXVUlTVPMksp2nOP98y+Zve17Ta3lr1rFY1DKWfD1VcgJXEQ05/eOG89wSlJt3ezKxudBNbat1PP3tcOZw615aOmdSRO1quXog6F6N74+Vr7RUOzMbduAn3elvw5/n1LZ+HZ9/pT/AIocvFr1w31aqkICAgIIQSgICDQ/SvVmOgoaRpI1ZXPI69kfVyzfiVvRFVviR6plrOE7IK55q6tudPGcmtI++76BZNKbncr0t7AAAAGQG4BTvFpdrTDdqXSl9l7d8cmW9pSccXjUuerUtHuGHbnQuO3Tulj6JIhtD6hVrYb19kkXrK0pbZXVcoip6WVzj1tyA7yVzFLzOoh7Nohc2SWW14io3SAskinDXt79xHyKl49ppmrP8uMsdWOYdsX07HEBAQEEIJQEBBzj0rxvlrbQxgzLxI1veS1ZXxLzX/V3ieJZqhpWUVJFTRfdjaG9/WVSiNdltXXorxqaiOy4Y3cp6xtDMoe3JeWh7EtGxVby2/UNRE05VEjGHL3gR+n5Kjen6tZ/mE8W9Euor6NkiAgICCEEoCAgwuJ7bBXRUk8u6Slna+Mj5Ef31KpzKRbHufZY41pi+oWsoyeVl3jUr1Z7PI5146XEamqisu41Zqgs8yLyz2q2ZSR1VwpjKMxA4ytH/IDIf1ZrnBSLZYmfZ7mtMY/7Z5aiiICAgII6UEoCAgsbz/ss+p7fzVbl/tSn4/7kMVN97NZV/K/Tw8Lh0rxKaiOy6Y5WaygmESFeWl7WC37688Ij+YXfF+uXHI+iGWWgqCAgICCEEoCAgtLq3at8+XO1u18t/wCihzxvHaEmKdXiWHeQWNKx7d4aVfLwuHSrGVLWXFoXDTuU0SimEOduSZIhVtXtVcx91jR8yforHD7zMoeR4hlVeVRAQEBBCCUBAQeXtD2lruYjIpPca1ECxvq8wLZYxkQd2Y6xwWHas1nolqVtFvVCVEkemFdRLyYVWuUsSjmESSBrSXEADnJ6EmSIX9mjcI5ZXtLdVwLQdx2ct36rQ4lJrTc+6nntE21DIq0gEBAQEEIJQEBAQY2+sj9Qe5zftBkI3dIcTkMlW5UV+VMymwTPzI0wpkki3Sgvb77RvHePosdpKjHtkbtRuDh1goD6hkZDSc3nmY3eSuup5pSeX7TJ5twje12mOYDMZ59a9pbV4mXNq7rMNtW8yhAQEBAQQglB5fI2NpdI4NaOcuOQCDA3HG2Gbc4sqbzS6g/dxO1X/wDluZQa5W+li1tOVutdxqup72thZ/Mdr+VBSseMpcS1Toa6mgozH7cMUcpk2ujMuIG8b+YKhzurUfZb4utz92xLNXVJ9PE920WDa6xuKCrFTtjiLmNaxvDpXcU9PU5m3fSjVlgppTKcmbBzPwXDprlJ6V3xnZrrG97QchJSVLXFw69l4bl3ZlfQV8MifLN0XpPwzUbIqJqqhef2aqmcAO9zc2/ivXjYbdiCzXRoNuulHU59EU7SflmgyWeaCUBBBQc49JWPZbRObLY3tbX7INTUkB3qwIzAAO4vI379wBB6Qg5NV1Mlc4uuFTUVhJzPrU7pfwcSEEMkbG3ZYGtA6GjJB61+KD3BXSU8zJoZCyRhza4c4XNqxaNS9iZrO4dAsWP6SWNsV2+xlAy1QM2u+izcvDtWfR3hepyaz9TZor5aZW7UdypSP+0BVZx3jzCeL1n3W9fi6y0jMpK+KQjmZEds/gpIxZb9ohxN8de+2iYlxpLdWmmpGmClP3sz7T+9XsHFik9VvKrl5HV2hrGvxVxWNfigpSiCYgyxRvI3guaDkgz2FsYXDDFYySGaaot5P29G95eC3pLM/uuHUNx5uID6AoKynuFFBWUcrZaedgkje3mc0jMFBcILC93KKz2isuVR/p0sLpXcchnkg+XJq+arqJqureXVFRI6aV2fO5xzPwHMOACDxroHrHFA10DXQNdA10DXQNdA10DXQNdA10HXPQZiAyw1uH5356J9Zpcz+w4+20dzt/8AHwQdZQc09PV19SwhDQsfk+vqmscM9+mz2z+IaPig4DrjrQNfiga/FA1+KBr8UDX4oGvxQNfiga/FA1+KBr8UDX4oGvxQZjB2If8AL2KLddHOIhhl2Z8s98Ttz+/Ib/gg+sAQ4Aggg8xCDjH+ISyXerbQ3emj1rdRROZK1gO1EXHe8j3TkBn0ZIOFaxQNYoJ1yga5QRrFA1igaxQNYoGsUDWKBrFA1igaxQV6KCpuNVFR0UElRUTO2I4o25ucUH15g6luVDhe20l6cx1fBA2OUsdtDduG/pOWWfFBmHNDgQ4Ag7iD0oNTqvRng2qqHzy2GnD3nN2wXMGfcCAEFLkswT2FF4snmQOSzBPYUXiyeZA5LME9hReLJ5kDkswT2FF4snmQOSzBPYUXiyeZA5LME9hReLJ5kDkswT2FF4snmQOSzBPYUXiyeZA5LME9hReLJ5kDkswT2FF4snmQOSzBPYUXiyeZBHJZgnsKLxZPMgzNgwnYcOue6zWyCle8ZOkaM3kdW0d+XBBm0H//2Q==" src="data:image/jpeg;base64,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"></center>
+
+
+                      Avatar
+           <br>
+             <!--id="myFile"--> <!--ng-hide="showAddEditformulario" ng-click="show()"-->
+                <input type="file" class="btn btn-danger btn-xs ng-pristine ng-untouched ng-valid ng-not-empty" ng-model="user.file" accept="image/*" multiple="" app-filereader="" ng-change="updateLinkImage(user.file[0])">
+
+                <br>
+
+
+   <div class="form-group">
+      <label>Name</label>
+      <input class="form-control ng-pristine ng-untouched ng-valid-minlength ng-valid-maxlength ng-not-empty ng-valid ng-valid-required" type="text" placeholder="Name" ng-model="user.name" minlength="4" maxlength="120" required="">
+    </div>
+
+     <div class="form-group">
+      <label>Email</label>
+      <input class="form-control ng-pristine ng-untouched ng-valid-email ng-valid-maxlength ng-not-empty ng-valid ng-valid-required" type="email" placeholder="Email" ng-model="user.email" maxlength="255" required="">
+    </div>
+
+   <div class="form-group">
+      <label>Password</label>
+      <input class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required ng-valid-minlength ng-valid-maxlength" type="password" placeholder="Password" ng-model="user.password" minlength="4" maxlength="30" required="">
+    </div>
+
+
+
+    <button type="submit">Save</button>
+    <button type="button" ng-click="hide()">Cancel</button>
+  </form>
+
+  <div>
+    <br><h3>Users</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+            <th>File</th>
+          <th>Permissions</th>
+
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- ngRepeat: user in users --><tr ng-repeat="user in users" class="ng-scope">
+          <td class="ng-binding">Admin</td>
+          <td class="ng-binding">admin@admin.com</td>
+        <td>  <img ng-src="data:image/jpeg;base64,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" width="50" src="data:image/jpeg;base64,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"> </td>
+          <td>
+            <!-- ngRepeat: permission in user.permissions --><div ng-repeat="permission in user.permissions" class="ng-binding ng-scope">Administrador</div><!-- end ngRepeat: permission in user.permissions -->
+          </td>
+          <td><button ng-click="editUser(user)">Edit</button></td>
+
+        </tr><!-- end ngRepeat: user in users -->
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>
+</div></div></div></div></ng-view></article>
+
+      </div>
+
+
+  </div>
+
+
+
+  <center>
+         <div class="footer">
+           <div class="container">
+             <p><span class="glyphicon glyphicon-heart"></span> 2016 Gestão em Condomínios.
+               Todos os direitos reservados.</p>
+           </div>
+         </div>
+
+  </center>
+
+
+
+
+
+
+	  <script src="./Gestão em condomínios_files/angular.js.download"></script>
+		<script src="./Gestão em condomínios_files/angular-route.min.js.download"></script>
+		<script src="./Gestão em condomínios_files/angular-cookies.min.js.download"></script>
+		<script src="./Gestão em condomínios_files/ngStorage.min.js.download"></script>
+
+		<script src="./Gestão em condomínios_files/jquery.min.js.download"></script>
+
+		<script src="./Gestão em condomínios_files/util.js.download"></script>
+		<script src="./Gestão em condomínios_files/html5shiv.js.download"></script>
+		<script src="./Gestão em condomínios_files/respond.min.js.download"></script>
+		<script src="./Gestão em condomínios_files/checklist-model.js.download"></script>
+		<script src="./Gestão em condomínios_files/ng-notify.min.js.download"></script> <!--  -->
+
+
+
+    <!-- jQuery -->
+      <script src="./Gestão em condomínios_files/jquery.js.download"></script>
+
+      <!-- Bootstrap Core JavaScript -->
+      <script src="./Gestão em condomínios_files/bootstrap.min.js.download"></script>
+
+
+
+
+
+	<!-- inject:js -->
+
+	<script src="./Gestão em condomínios_files/index.js.download"></script>
+
+	<script src="./Gestão em condomínios_files/agendamento.js.download"></script>
+
+	<script src="./Gestão em condomínios_files/alugarApe.js.download"></script>
+
+	<script src="./Gestão em condomínios_files/aluguelGaragem.js.download"></script>
+
+	<script src="./Gestão em condomínios_files/partamento.js.download"></script>
+
+	<script src="./Gestão em condomínios_files/morador.js.download"></script>
+
+	<script src="./Gestão em condomínios_files/bicicleta.js.download"></script>
+
+	<script src="./Gestão em condomínios_files/cadastro.js.download"></script>
+
+	<script src="./Gestão em condomínios_files/caixa.js.download"></script>
+
+	<script src="./Gestão em condomínios_files/conta.js.download"></script>
+
+	<script src="./Gestão em condomínios_files/editUser.js.download"></script>
+
+	<script src="./Gestão em condomínios_files/file.js.download"></script>
+
+	<script src="./Gestão em condomínios_files/fotoApe.js.download"></script>
+
+	<script src="./Gestão em condomínios_files/fotoVendaApe.js.download"></script>
+
+	<script src="./Gestão em condomínios_files/funcionario.js.download"></script>
+
+	<script src="./Gestão em condomínios_files/home.js.download"></script>
+
+	<script src="./Gestão em condomínios_files/login.js.download"></script>
+
+	<script src="./Gestão em condomínios_files/login.logout.service.js.download"></script>
+
+	<script src="./Gestão em condomínios_files/header.js.download"></script>
+
+	<script src="./Gestão em condomínios_files/mostrarAgendamento.js.download"></script>
+
+	<script src="./Gestão em condomínios_files/mostrarAlugarApe.js.download"></script>
+
+	<script src="./Gestão em condomínios_files/mostrarAluguelGaragemPortaria.js.download"></script>
+
+	<script src="./Gestão em condomínios_files/mostrarFotoApe.js.download"></script>
+
+	<script src="./Gestão em condomínios_files/mostrarFotoVendaApe.js.download"></script>
+
+	<script src="./Gestão em condomínios_files/mostrarVendaApe.js.download"></script>
+
+	<script src="./Gestão em condomínios_files/ocorrencia.js.download"></script>
+
+	<script src="./Gestão em condomínios_files/pesquisaFuncionario.js.download"></script>
+
+	<script src="./Gestão em condomínios_files/pesquisaPrestadorServico.js.download"></script>
+
+	<script src="./Gestão em condomínios_files/prestadorservico.js.download"></script>
+
+	<script src="./Gestão em condomínios_files/user.js.download"></script>
+
+	<script src="./Gestão em condomínios_files/usertable.js.download"></script>
+
+	<script src="./Gestão em condomínios_files/interceptor.js.download"></script>
+
+	<script src="./Gestão em condomínios_files/util.filter.js.download"></script>
+
+	<script src="./Gestão em condomínios_files/util.service.js.download"></script>
+
+	<script src="./Gestão em condomínios_files/veiculo.js.download"></script>
+
+	<script src="./Gestão em condomínios_files/venderApe.js.download"></script>
+
+	<!-- endinject -->
+
+
+
+
+<script src="./Gestão em condomínios_files/livereload.js.download" async="" defer=""></script>
+
+
+<div class="ngn ng-scope" ng-class="ngNotify.notifyClass" style="display: none; opacity: -3.19189e-16;"><span class="ngn-dismiss" ng-click="dismiss()">×</span><!-- ngIf: ngNotify.nofityHtml --><!-- ngIf: !ngNotify.nofityHtml --><span ng-if="!ngNotify.nofityHtml" ng-bind="ngNotify.notifyMessage" class="ng-binding ng-scope"></span><!-- end ngIf: !ngNotify.nofityHtml --></div></body></html>

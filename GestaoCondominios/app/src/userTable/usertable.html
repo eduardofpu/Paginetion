@@ -1,0 +1,114 @@
+<div class="jumbotron">
+
+  <div class="container">
+      <div class="row">
+          <div class="col-md-7 col-md-offset-3">
+              <div class="login-panel panel panel-default">
+                  <div class="panel-heading">
+                      <h3 class="panel-title">Users</h3>
+                  </div>
+                  <div class="panel-body">
+
+
+  <form ng-submit="saveUser(user)" ng-hide="!showAddEditUser" name="form">
+
+
+      <center  ><img ng-src="{{user.mimeType}},{{user.file}}" width="150" class="img-circle img80_80" /></center>
+
+
+                      Avatar
+           <br />
+             <!--id="myFile"--> <!--ng-hide="showAddEditformulario" ng-click="show()"-->
+                <input   type="file" class="btn btn-danger btn-xs"   ng-model="user.file" accept="image/*"
+                   multiple app-filereader ng-change="updateLinkImage(user.file[0])" />
+
+                <br />
+
+
+                <div class="form-group">
+                  <div ng-class="{'has-error': form.nome$touched && (form.nome.$error.required) , 'has-success':form.nome.$valid}">
+
+                   <label>Name</label>
+                   <input class="form-control" type="text" placeholder="Name" ng-model="user.name" minlength="4" maxlength="120" required name="nome">
+                 </div>
+                 </div>
+
+                 <div ng-show="form.nome.$dirty" >
+                      <div  ng-show="form.nome.$error.required" class="alert alert-danger" role="alert">Campo Nome é obrigatório </div>
+
+                  </div>
+
+
+    <div class="form-group input-group">
+                                    <span class="input-group-addon">@</span>
+      <div class="form-group" ng-class="{'has-error': form.email.$invalid ,'has-success': form.email.$valid}">
+
+      <input for="email" name="email"  type="email" class="form-control"   type="email" placeholder="Email" ng-model="user.email"
+       autofocus required >
+     </div>
+    </div>
+
+    <div ng-show="form.email.$dirty" >
+         <div  ng-show="form.email.$error.required" class="alert alert-danger" role="alert">Campo Email é obrigatório </div>
+            <div  ng-show="form.email.$error.email" class="alert alert-danger" role="alert">Email inválido </div>
+
+
+    </div>
+
+    <div class="form-group">
+      <div ng-class="{'has-error': form.password$touched && (form.password.$error.required) , 'has-success':form.password.$valid}">
+
+     <label>Password</label>
+     <input class="form-control" type="password" placeholder="Password" name="password" ng-model="user.password" minlength="4" maxlength="30" required>
+   </div>
+ </div>
+
+ <div ng-show="form.password.$dirty" >
+      <div  ng-show="form.password.$error.required" class="alert alert-danger" role="alert">Campo Password é obrigatório </div>
+
+  </div>
+
+
+
+    <button  class="btn btn-success btn-s"   type="submit">
+           <span class="glyphicon glyphicon-upload"></span> Salvar </button>
+                 <button type="reset"  class="btn btn-danger btn-s">
+              <span class="glyphicon glyphicon-trash"></span>Limpar Nome</button>
+        <button type="button" value="Voltar" onClick="history.go(-1)" class="btn btn-danger btn-s">Voltar </button>
+          <button type="button" class="btn btn-success btn-s"  ng-click="hide()">Cancel</button>
+
+  </form>
+<br><br>
+  <div class="row">
+                   <div class="col-lg-20">
+                     <div class="table-responsive">
+                                               <table class="table table-bordered table-hover table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+            <th>File</th>
+          <th>Permissions</th>
+
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="user in users" class="active">
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+        <td>  <img ng-src="{{user.mimeType}},{{user.file}}" width="50" /> </td>
+          <td>
+            <div ng-repeat="permission in user.permissions">{{ permission.role | formatPermission}}</div>
+          </td>
+
+		  <td><button ng-click="editUser(user)"class="btn btn-success btn-s"><span class="glyphicon glyphicon-ok"></span></button></td>
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>
+</div>

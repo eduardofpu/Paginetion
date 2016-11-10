@@ -1,0 +1,53 @@
+<div class="jumbotron">
+
+  <div class="container">
+      <div class="row">
+          <div class="col-md-15 col-md-offset-1">
+              <div class="login-panel panel panel-default">
+                  <div class="panel-heading">
+                      <br/><h3>Fotos para alugar apartamenos</h3>
+                  </div>
+                  <div class="panel-body">
+
+
+
+
+                    <div class="row">
+                                     <div class="col-lg-100">
+
+                                         <div class="table-responsive">
+
+    <table class="table table-bordered table-hover table-striped">
+         <thead>
+            <tr>
+
+               <th>Comodo</th>
+               <th>Apartamento</th>
+                <th>valor do Aluguel</th>
+               <th>Fotos do apartamento</th>
+
+
+
+
+        </tr>
+      </thead>
+      <tbody>
+        <!--<tr ng-repeat="mostrarFoto in mostrarFotos" class="active">-->
+
+          <tr dir-paginate="mostrarFoto in mostrarFotos |orderBy:sortKey:reverse|itemsPerPage:4">
+
+
+          <td>{{ mostrarFoto.comodo }}</td>
+          <td>{{ mostrarFoto.userFotoApe.userid.descricao}}</td>
+            <td>{{ mostrarFoto.alugarApartamentoId.valor}}</td>
+          <td> <img ng-src="{{mostrarFoto.mimeType}},{{mostrarFoto.file}}" width="300" /></td>
+
+          <dir-pagination-controls max-size="4" boundary-links="true"></dir-pagination-controls>
+
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+  </div>

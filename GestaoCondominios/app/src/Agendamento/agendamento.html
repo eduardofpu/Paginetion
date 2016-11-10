@@ -1,0 +1,156 @@
+
+
+
+<div class="jumbotron">
+
+  <div class="container">
+      <div class="row">
+          <div class="col-md-15 col-md-offset-1">
+              <div class="login-panel panel panel-default">
+                  <div class="panel-heading">
+                      <br/><h3>Agendamento de prestador de Serviço</h3>
+                  </div>
+                  <div class="panel-body">
+
+
+                      <button type="button" ng-hide="showAddEditAgenda" ng-click="show()" class="btn  btn-primary  btn-lg  aw-btn-full-width">
+                      Novo Agendamento
+                      </button>
+
+
+
+  <form ng-submit="saveAgendamento(ag)" ng-hide="!showAddEditAgenda" name="form1">
+
+
+    <div class="form-group">
+      <div ng-class="{'has-error': form1.des$touched && (form1.des.$error.required) , 'has-success':form1.des.$valid}">
+
+      <label>Descrição do serviço</label>
+      <input class="form-control" type="text" placeholder="Description" ng-model="ag.descricao" required name="des" >
+
+     </div>
+     </div>
+
+     <div ng-show="form1.des.$dirty" >
+          <div  ng-show="form1.des.$error.required" class="alert alert-danger" role="alert">Campo descrição é obrigatório. </div>
+
+      </div>
+
+
+
+
+
+<br>
+
+    <div>
+      <label>Data</label>
+      <input type="date" placeholder="Data" ng-model="ag.data" required >
+      <div class="form-group required">
+        <div class="col-sm-7">
+          <div ng-bind="ag.data"></div>
+        </div>
+        </div>
+
+    </div><br>
+
+
+    <div>
+      <label>Horário previsto da Entrada</label>
+      <input type="time" placeholder="HH:mm" min="08:00" max="17:00" ng-model="ag.hora" required >
+
+    </div><br>
+
+    <div>
+
+      <input type="hidden" placeholder="HH:mm" min="08:00" max="17:00" ng-model="ag.horasaida"  >
+
+    </div><br>
+
+    <div ng-class="{'has-error': form1.empresa$touched && (form1.empresa.$error.required) , 'has-success':form1.empresa.$valid}">
+
+      <label>Empresa</label>
+      <input class="form-control" type="text" placeholder="Empresa" ng-model="ag.empresa" required name="empresa">
+    </div>
+
+    <div ng-show="form1.empresa.$dirty" >
+         <div  ng-show="form1.empresa.$error.required" class="alert alert-danger" role="alert">Campo empresa é obrigatório. </div>
+
+     </div>
+
+
+
+<br>
+
+      <button  class="btn btn-success btn-s"   type="submit">
+             <span class="glyphicon glyphicon-upload"></span> Salvar </button>
+                   <button type="reset"  class="btn btn-danger btn-s">
+                <span class="glyphicon glyphicon-trash"></span>Limpar Nome</button>
+            <button type="button" class="btn btn-success btn-s"  ng-click="hide()">Voltar</button>
+
+
+<!--<pre>{{ag|json}}</pre>-->
+
+
+  </form>
+
+<br><br>
+
+    <div class="row">
+        <div class="col-lg-50">
+
+        <table class="table table-bordered table-hover table-striped" ng-hide="showAddEditAgenda">
+          <div class="blocktext">
+
+            <div >
+
+             <div class="form-group input-group" ng-hide="showAddEditAgenda">
+
+            <input type="text" class="form-control"  ng-model="busca"
+             placeholder="Pesquise uma Descricao: " size="30"	maxlength="30" />
+             <span class="input-group-addon"><i class="fa fa-search"></i></span>
+
+
+               </div>
+             </div>
+
+
+
+         <br/>
+          <thead>
+            <tr>
+              <th>Descrição</th>
+              <th>data</th>
+              <th>hora</th>
+              <th>empresa</th>
+              <th>Apartamento</th>
+              <th>Solicitante</th>
+              <th>Editar</th>
+              <th>Deletar</th>
+            </tr>
+          </thead>
+          <tbody>
+
+              <tr dir-paginate="ag in ags|filter:busca |orderBy:sortKey:reverse|itemsPerPage:1">
+
+              <!--  <tr ng-repeat="ag in ags|filter:busca" class="active">-->
+
+
+              <td><font color="orange">{{ag.descricao }}</font></td>
+              <td><font color="red">{{ag.data | date : "dd/MM/yyyy " }}</font></td>
+              <td><font color="blue">{{ag.hora | date : "HH:mm "}}</font></td>
+
+              <td>{{ag.empresa }}</td>
+              <td>{{ag.userAgenda.userid.descricao}}</td> <!-- Nome do Apartamento do Usuário  morador na tabela Apartamento-->
+              <td><font color="green">{{ag.userAgenda.name}}</td> <!-- Nome do Usuário  na tabela UserEntity-->
+
+
+              <td><button ng-click="editAgendamento(ag)" class="btn btn-success btn-s"><span class="glyphicon glyphicon-ok"></span></button></td>
+              <td><button ng-click="deleteAgendamento(ag)" class="btn btn-danger btn-s"><span class="glyphicon glyphicon-trash"></span></button></td>
+
+              <dir-pagination-controls max-size="1" boundary-links="true" ng-hide="showAddEditAgenda"></dir-pagination-controls>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    </div>

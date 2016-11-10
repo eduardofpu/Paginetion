@@ -1,0 +1,221 @@
+
+<div class="jumbotron">
+
+  <div class="container">
+      <div class="row">
+          <div class="col-md-50 col-md-offset-0">
+              <div class="login-panel panel panel-default">
+                  <div class="panel-heading">
+                      <br/><h3>Aluguel de Garagem</h3>
+                  </div>
+                  <div class="panel-body">
+
+  <button type="button" ng-hide="showAddEditGaragem" ng-click="show()" class="btn  btn-primary  btn-lg  aw-btn-full-width">
+  Novo Aluguel de Garagem
+  </button>
+
+
+
+
+
+  <form ng-submit="saveAluguelGaragem(al)" ng-hide="!showAddEditGaragem" name="form1">
+
+    <div class="form-group">
+      <div ng-class="{'has-error': form1.modelo$touched && (form1.modelo.$error.required) , 'has-success':form1.modelo.$valid}">
+
+      <label>Modelo do Veículo</label>
+      <input class="form-control"  type="text" placeholder="Modelo" ng-model="al.modelo" name="modelo" required>
+    </div>
+    </div>
+
+    <div ng-show="form1.modelo.$dirty" >
+         <div  ng-show="form1.modelo.$error.required" class="alert alert-danger" role="alert">Campo Modelo é obrigatório </div>
+
+     </div>
+
+
+  <div class="form-group">
+    <div ng-class="{'has-error': form1.cor$touched && (form1.cor.$error.required) , 'has-success':form1.cor.$valid}">
+
+      <label>Cor do veículo</label>
+      <input class="form-control"  type="text" placeholder="Cor" ng-model="al.cor" name="cor" required>
+    </div>
+    </div>
+
+    <div ng-show="form1.cor.$dirty" >
+         <div  ng-show="form1.cor.$error.required" class="alert alert-danger" role="alert">Campo Cor é obrigatório </div>
+
+     </div>
+
+
+
+    <div class="form-group">
+      <div ng-class="{'has-error': form1.placaveiculo$touched && (form1.placaveiculo.$error.required) , 'has-success':form1.placaveiculo.$valid}">
+
+         <label>Placa</label>
+             <input   class="form-control" type="text" placeholder="HCE-5432" ng-model="al.placa"
+                  placa  ng-minlength=8  maxlength="8"  name="placaveiculo"  required >
+
+                          <span ng-show="form1.placaveiculo.$touched && form1.placaveiculo.$error.minlength" class="label label-danger">
+                            * Placa : Iválida  faltam {{8- placaveiculo.$viewValue.length}}    Nº(s) </span>
+                   </div>
+          </div>
+
+          <div ng-show="form1.placaveiculo.$dirty" >
+               <div  ng-show="form1.placaveiculo.$error.required" class="alert alert-danger" role="alert">Campo Placa é obrigatório </div>
+
+           </div>
+
+
+    <div class="form-group">
+      <div ng-class="{'has-error': form1.motorista$touched && (form1.motorista.$error.required) , 'has-success':form1.motorista.$valid}">
+
+      <label>Motorista</label>
+      <input class="form-control"  type="text" placeholder="Motorista" ng-model="al.motorista" name="motorista" required="">
+    </div>
+    </div>
+
+    <div ng-show="form1.motorista.$dirty" >
+         <div  ng-show="form1.motorista.$error.required" class="alert alert-danger" role="alert">Campo motorista é obrigatório </div>
+
+     </div>
+
+
+    <div class="form-group">
+      <div ng-class="{'has-error': form1.cnh$touched && (form1.cnh.$error.required) , 'has-success':form1.cnh.$valid}">
+
+      <label>CNH</label>
+      <input class="form-control"  type="text" placeholder="CNH"
+      maxlength="11" ng-model="al.cnh" required  name="cnh">
+    </div>
+    </div>
+
+    <div ng-show="form1.cnh.$dirty" >
+         <div  ng-show="form1.cnh.$error.required" class="alert alert-danger" role="alert">Campo CNH é obrigatório </div>
+
+     </div>
+
+
+
+      <div class="form-group">
+          <label>Data Inicial</label>
+          <div class="form-group required">
+            <div class="col-sm-7">
+              <div ng-bind="al.dataInicial"></div>
+            </div>
+          </div>
+
+          <input class="form-control"  type= "date"  placeholder="yyyy-MM-dd" ng-model="al.dataInicial" maxlength="10" required>
+
+
+
+    </div>
+
+    <div class="form-group">
+      <label>Data Final</label>
+      <div class="form-group required">
+        <div class="col-sm-7">
+          <div ng-bind="al.dataFinal"></div>
+        </div>
+      </div>
+      <input class="form-control"  type="date" placeholder="yyyy-MM-dd" ng-model="al.dataFinal" maxlength="10" required>
+
+    </div>
+
+    <div class="form-group">
+      <div ng-class="{'has-error': form1.descricaocliente$touched && (form1.descricaocliente.$error.required) , 'has-success':form1.descricaocliente.$valid}">
+
+      <label>Descrição do Cliente </label>
+      <input class="form-control"  type="text" placeholder="Description" ng-model="al.descricaoCliente" name="descricaocliente" required>
+    </div>
+    </div>
+    <div ng-show="form1.descricaocliente.$dirty" >
+         <div  ng-show="form1.descricaocliente.$error.required" class="alert alert-danger" role="alert">Campo descrição é obrigatório. </div>
+
+     </div>
+
+
+    <button  class="btn btn-success btn-s"   type="submit">
+           <span class="glyphicon glyphicon-upload"></span> Salvar </button>
+                 <button type="reset"  class="btn btn-danger btn-s">
+              <span class="glyphicon glyphicon-trash"></span>Limpar Nome</button>
+        <button type="button" class="btn btn-success btn-s"  ng-click="hide()">Voltar</button>
+
+
+  </form>
+  <!--<pre>{{al|json}}</pre>-->
+  <br><br>
+
+
+  <div class="row">
+    <div class="col-lg-150">
+
+      <div class="table-responsive">
+    <table class="table table-bordered table-hover table-striped" ng-hide="showAddEditGaragem">
+
+      <div class="blocktext">
+
+        <div >
+
+         <div class="form-group input-group" ng-hide="showAddEditGaragem">
+
+        <input type="text" class="form-control"  ng-model="busca"
+         placeholder="Pesquise uma Descricao: " size="30"	maxlength="30" />
+         <span class="input-group-addon"><i class="fa fa-search"></i></span>
+
+
+           </div>
+         </div>
+        </div>
+
+
+     <br/>
+
+      <thead>
+        <tr>
+
+          <th>Garagem do morador </th>
+          <th>Modelo</th>
+          <th>Cor</th>
+          <th>Placa</th>
+          <th>Motorista</th>
+          <th>CNH</th>
+          <th>Data Inicial</th>
+          <th>Data Final</th>
+          <th>Apartamento do Cliente</th>
+
+          <th>Editar</th>
+          <th>Deletar</th>
+
+
+        </tr>
+      </thead>
+      <tbody>
+        <!--<tr ng-repeat="al in als|filter:busca" class="active">-->
+          <tr dir-paginate="al in als|filter:busca |orderBy:sortKey:reverse|itemsPerPage:4">
+
+
+          <td><font color="orange">{{ al.user.userid.descricao}}</font></td>
+          <td>{{ al.modelo }}</td>
+          <td>{{ al.cor }}</td>
+          <td><font color="blue">{{ al.placa }}</font></td>
+          <td>{{ al.motorista }}</td>
+          <td>{{ al.cnh }}</td>
+          <td><font color="green">{{ al.dataInicial | date : "dd/MM/yyyy " }}</font></td>
+          <td><font color="red">{{ al.dataFinal  | date : "dd/MM/yyyy " }}</font></td>
+          <td><font color="orange">{{ al.descricaoCliente }}</font></td>
+
+          <td><button ng-click="editAluguelGaragem(al)" class="btn btn-success btn-s"><span class="glyphicon glyphicon-ok"></span></button></td>
+          <td><button ng-click="deleteAluguelGaragem(al)" class="btn btn-danger btn-s"><span class="glyphicon glyphicon-trash"></span></button></td>
+
+
+          <dir-pagination-controls max-size="4" boundary-links="true"></dir-pagination-controls>
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+</div>
+</div>

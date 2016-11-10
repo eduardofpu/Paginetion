@@ -1,0 +1,89 @@
+<div class="jumbotron">
+
+  <div class="container">
+      <div class="row">
+          <div class="col-md-8 col-md-offset-2">
+              <div class="login-panel panel panel-default">
+                  <div class="panel-heading">
+                      <h3 class="panel-title">Fundo de caixa do condomínio</h3>
+                  </div>
+                  <div class="panel-body">
+
+    <button type="button" ng-hide="showAddEditUser" ng-click="show()" class="btn  btn-primary  btn-lg  aw-btn-full-width">
+       Atualizar o Caixa
+        </button>
+
+  <form ng-submit="saveCaixa(c)" ng-hide="!showAddEditUser" name="theForm" role="theForm">
+
+   <div class="form-group" >
+
+     <div ng-class="{'has-error': theForm.valor$touched && (theForm.valor.$error.required) , 'has-success':theForm.volor.$valid}">
+
+        <label for="v"> Valor: </label>
+
+        <div class="form-group input-group">
+        <span class="input-group-addon">$</span>
+        <input  class="form-control" type="number"  required ="valor" placeholder="Valor"
+         id="v" ng-class="fields.VALOR == 'ERROR'? 'input-danger' : ''"
+        ng-model="c.valor "  name="valor">
+             <span class="input-group-addon">.00</span>
+       </div>
+
+     </div>
+    </div>
+
+
+     <div ng-show="theForm.valor.$dirty" >
+     <div  ng-show="theForm.valor.$error.required" class="alert alert-danger" role="alert">Somente números </div>
+
+
+     </div>
+
+
+
+
+     <button  class="btn btn-success btn-s"   type="submit">
+            <span class="glyphicon glyphicon-upload"></span> Salvar </button>
+                  <button type="reset"  class="btn btn-danger btn-s">
+               <span class="glyphicon glyphicon-trash"></span>Limpar Nome</button>
+            <button type="button" class="btn btn-success btn-s"  ng-click="hide()">Voltar</button>
+
+  </form>
+  <br><br>
+
+  <div class="row">
+   <div class="col-lg-30">
+   <div class="table-responsive">
+    <table class="table table-bordered table-hover table-striped" ng-hide="showAddEditUser">
+         <thead>
+            <tr>
+
+               <th>Valor atual</th>
+               <th>Data e Hora da atualização</th>
+                <th>Gerente do caixa</th>
+
+<!--
+               <th>Editar</th>
+               <th>Deletar</th>
+-->
+        </tr>
+      </thead>
+      <tbody>
+        <!--<tr ng-repeat="c in cs" class="active">-->
+          <tr dir-paginate="c in cs|filter:busca |orderBy:sortKey:reverse|itemsPerPage:4">
+
+
+          <td><font color="orange">{{ c.valor | currency: 'R$'}}</font></td>
+          <td><font color="blue">{{ c.registerDate | date : "dd/MM/yyyy 'as' h:mma"  }}</font></td>
+          <td><font color="green">{{ c.gerente.name}}</font></td>
+<!--
+          <td><button ng-click="editCaixa(c)" class="btn btn-success btn-s"><span class="glyphicon glyphicon-ok"></span></button></td>
+          <td><button ng-click="deleteCaixa(c)" class="btn btn-danger btn-s"><span class="glyphicon glyphicon-trash"></span></button></td>
+-->
+<dir-pagination-controls max-size="4" boundary-links="true"></dir-pagination-controls>
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,131 @@
+<div class="jumbotron">
+
+  <div class="container">
+      <div class="row">
+          <div class="col-md-7 col-md-offset-3">
+              <div class="login-panel panel panel-default">
+                  <div class="panel-heading">
+                      <h3 class="panel-title">Please Sign In</h3>
+                  </div>
+                  <div class="panel-body">
+
+
+
+  <form  name="theForm" class="form-horizontal"   ng-submit="editarUser(userEdit)" ><!--  ng-repeat="user in users"-->
+
+    <center>{{msg}}</center>
+
+
+   <img ng-src="{{userEdit.mimeType}},{{userEdit.file}}" width="100"  />
+
+
+
+
+
+                      Avatar:
+                     <br />
+     <fieldset>
+         <div class="form-group">
+           <input  class="form-control"  type="file" class="btn btn-danger btn-xs"   ng-model="userEdit.file" accept="userEdit.file/*"
+             multiple app-filereader ng-change="updateLinkImageEdit(userEdit.file[0])"/>
+            </div>
+
+
+                  <br />
+
+
+ <div class="form-group">
+    <input   class="form-control"  type="hidden" ng-model="userEdit.id"/>
+      </div>
+<!--
+    <div class="form-group required">
+      <label for="inputName" class="col-sm-2">ID :</label>
+      <div class="col-sm-7">
+        <div ng-bind="userEdit.id"></div>
+      </div>
+    </div>
+-->
+   Nome:
+   <div class="form-group">
+      <div  ng-class="{'has-error': theForm.nome.$invalid ,'has-success': theForm.nome.$valid}">
+    <input  class="form-control"  type="text" ng-model="userEdit.name" name="nome" required/>
+      </div>
+      </div>
+
+      <div ng-show="theForm.nome.$dirty" >
+           <div  ng-show="theForm.nome.$error.required" class="alert alert-danger" role="alert">Campo Nome é obrigatório </div>
+             </div>
+  <!--
+                       <div class="form-group required">
+                         <label for="inputName" class="col-sm-2">Nome :</label>
+                         <div class="col-sm-7">
+                           <div ng-bind="userEdit.name"></div>
+                         </div>
+                       </div>
+
+-->
+
+    Email:
+    <div class="form-group input-group">
+         <span class="input-group-addon">@</span>
+       <div  ng-class="{'has-error': theForm.email.$invalid ,'has-success': theForm.email.$valid}">
+
+      <input  class="form-control"  type="email" ng-model="userEdit.email" name="email" required/>
+      </div>
+        </div>
+
+      <div ng-show="theForm.email.$dirty" >
+           <div  ng-show="theForm.email.$error.required" class="alert alert-danger" role="alert">Campo Email é obrigatório </div>
+              <div  ng-show="theForm.email.$error.email" class="alert alert-danger" role="alert">Email inválido </div>
+       </div>
+
+<!--
+                         <div class="form-group required">
+                           <label for="inputEmail" class="col-sm-2">Email :</label>
+                           <div class="col-sm-7">
+                             <div ng-bind="userEdit.email"></div>
+                           </div>
+-->
+
+
+
+   <div class="form-group">
+    <div  ng-class="{'has-error': theForm.password.$invalid ,'has-success': theForm.password.$valid}">
+        <input  class="form-control"   type="password" class="form-control" placeholder="****"  ng-model="userEdit.password"  name="password"  required  >
+
+         </div>
+     </div>
+
+           <div ng-show="theForm.password.$dirty" >
+              <div  ng-show="theForm.password.$error.required" class="alert alert-danger" role="alert">Campo password é obrigatório </div>
+                  </div>
+
+
+
+
+</fieldset>
+
+
+
+
+
+
+
+
+    <button  class="btn btn-success btn-s"  type="submit" >
+           <span class="glyphicon glyphicon-upload"></span> Editar</button>
+                 <button type="reset"  class="btn btn-danger btn-s">
+              <span class="glyphicon glyphicon-trash"></span>Limpar Nome</button>
+        <button type="button" value="Voltar" onClick="history.go(-1)" class="btn btn-danger btn-s">Voltar </button>
+
+
+
+     </form>
+   </div>
+
+  </div>
+
+<!--
+  <pre >{{userEdit|json}}</pre>
+
+-->

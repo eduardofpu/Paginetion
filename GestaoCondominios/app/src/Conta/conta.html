@@ -1,0 +1,159 @@
+<div class="jumbotron">
+
+  <div class="container">
+      <div class="row">
+          <div class="col-md-15 col-md-offset-1">
+              <div class="login-panel panel panel-default">
+                  <div class="panel-heading">
+                      <h3 class="panel-title">Prestar Contas</h3>
+                  </div>
+                  <div class="panel-body">
+    <button type="button" ng-hide="showAddEditUser" ng-click="show()" class="btn  btn-primary  btn-lg  aw-btn-full-width">
+       Registrar contas do condomínio:
+        </button>
+
+  <form ng-submit="savePrestarConta(t)" ng-hide="!showAddEditUser" name="theForm" role="theForm">
+
+
+
+
+<div class="form-group" >
+
+  <div ng-class="{'has-error': theForm.des$touched && (theForm.des.$error.required) , 'has-success':theForm.des.$valid}">
+
+            <label>Descrição do serviço:</label>
+
+                <input class="form-control"  type="text" placeholder="Registrar o tipo de serviço" ng-model="t.descricao" name="des" required>
+             </div>
+</div>
+
+<div ng-show="theForm.des.$dirty" >
+         <div  ng-show="theForm.des.$error.required" class="alert alert-danger" role="alert">Campo Descrição é obrigatório </div>
+            </div>
+
+<div class="form-group">
+  <div ng-class="{'has-error': theForm.nome$touched && (theForm.nome.$error.required) , 'has-success':theForm.nome.$valid}">
+
+        <label>Nome do Funcionário: </label>
+
+             <input class="form-control"   type="text" placeholder="Nome" ng-model="t.funcionario " name="nome"  required>
+       </div>
+    </div>
+                      <div ng-show="theForm.nome.$dirty" >
+                               <div  ng-show="theForm.nome.$error.required" class="alert alert-danger" role="alert">Campo nome do funcionário é obrigatório </div>
+                                 </div>
+
+   <div class="form-group" >
+
+     <div ng-class="{'has-error': theForm.empresa$touched && (theForm.empresa.$error.required) , 'has-success':theForm.empresa.$valid}">
+
+           <label>Empresa do Funcionário: </label>
+
+                <input class="form-control" type="text" placeholder="Empresa" ng-model="t.empresa "  name="empresa"  required>
+          </div>
+  </div>
+
+  <div ng-show="theForm.empresa.$dirty" >
+    <div  ng-show="theForm.empresa.$error.required" class="alert alert-danger" role="alert">Campo Empresa é obrigatório </div>
+      </div>
+
+
+          <div class="form-group">
+
+            <div ng-class="{'has-error': theForm.valor$touched && (theForm.valor.$error.required) , 'has-success':theForm.volor.$valid}">
+
+               <label>Valor: </label>
+
+             <div class="form-group input-group" >
+               <span class="input-group-addon">$</span>
+
+                    <input  class="form-control"  type="text" placeholder="Valor" ng-model="t.valor "  name="valor" required>
+                    <span class="input-group-addon">.00</span>
+              </div>
+            </div>
+          </div>
+
+
+          <div ng-show="theForm.valor.$dirty" >
+          <div  ng-show="theForm.valor.$error.required" class="alert alert-danger" role="alert">Campo valor é obrigatório </div>
+          </div>
+
+
+
+
+
+
+            <button  class="btn btn-success btn-s"   type="submit">
+                   <span class="glyphicon glyphicon-upload"></span> Salvar </button>
+                         <button type="reset"  class="btn btn-danger btn-s">
+                      <span class="glyphicon glyphicon-trash"></span>Limpar Nome</button>
+                <button type="button" class="btn btn-success btn-s"  ng-click="hide()">Voltar</button>
+
+  </form>
+
+
+<br><br>
+  <div class="row">
+    <div class="col-lg-100">
+
+        <div class="table-responsive">
+        <table class="table table-bordered table-hover table-striped" ng-hide="showAddEditUser">
+          <div class="blocktext">
+
+            <div >
+
+             <div class="form-group input-group">
+
+            <input type="text" class="form-control"  ng-model="busca"
+             placeholder="Pesquise uma Descricao: " size="30"	maxlength="30" />
+             <span class="input-group-addon"><i class="fa fa-search"></i></span>
+
+
+               </div>
+             </div>
+            </div>
+
+
+         <br/>
+
+         <thead>
+            <tr>
+               <th>Descrição</th>
+               <th>Funcionário</th>
+               <th>Empresa</th>
+               <th>Valor total do serviço</th>
+               <th>Data e Hora da atualização</th>
+
+
+
+
+        </tr>
+      </thead>
+      <tbody>
+      <!--  <tr ng-repeat="t in ts|filter:busca" class="active">-->
+      <tr dir-paginate="t in ts|filter:busca |orderBy:sortKey:reverse|itemsPerPage:4">
+
+
+          <td><font color="blue">{{t.descricao}}</font></td>
+          <td>{{ t.funcionario }}</td>
+          <td>{{ t.empresa }}</td>
+          <td><font color="orange">{{ t.valor | currency: 'R$'}}</font></td>
+          <td><font color="green">{{ t.registerDate | date : "dd/MM/yyyy 'as' h:mma"  }}</font></td>
+
+
+
+          <!--
+          <td><button ng-click="editPrestarConta(t)" class="btn btn-success btn-s"><span class="glyphicon glyphicon-ok"></span></button></td>
+
+          <td><button ng-click="deletePrestarConta(t)" class="btn btn-danger btn-s"><span class="glyphicon glyphicon-trash"></span></button></td>
+-->
+<dir-pagination-controls max-size="4" boundary-links="true"></dir-pagination-controls>
+
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>
+</div>

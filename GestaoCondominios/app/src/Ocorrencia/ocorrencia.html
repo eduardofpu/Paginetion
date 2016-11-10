@@ -1,0 +1,105 @@
+
+<div>
+
+
+  <div class="jumbotron">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="login-panel panel panel-default">
+                    <div class="panel-heading">
+                         <center><h3>Diário de Ocorrências<p>
+                          <span  class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+
+                         </h3></center>
+                    </div>
+                    <div class="panel-body">
+
+      <button type="button" ng-hide="showAddEditUser" ng-click="show()" class="btn  btn-primary  btn-lg  aw-btn-full-width">
+         Nova Ocorrência.
+          </button>
+
+
+  <form  ng-submit="saveOcorrencia(o)" ng-hide="!showAddEditUser" name="form1" >
+
+
+
+
+<div class="form-group">
+  <div ng-class="{'has-error': form1.ocorrencia$touched && (form1.ocorrencia.$error.required) , 'has-success':form1.ocorrencia.$valid}">
+
+         <textarea class="form-control" style="font-size:20px; color:green"
+            rows="15" ng-model="o.registro"
+
+              class="form-control" input type="text" placeholder="Registra as Ocorrêncas aqui!"  name="ocorrencia" required>
+              </textarea>
+       </div>
+
+       <div ng-show="form1.ocorrencia.$dirty" >
+            <div  ng-show="form1.ocorrencia.$error.required" class="alert alert-danger" role="alert">Registre uma ocorrência para salvar. </div>
+
+        </div>
+
+
+
+
+
+
+
+
+              <button  class="btn btn-success btn-s"   type="submit">
+                     <span class="glyphicon glyphicon-upload"></span> Salvar </button>
+                           <button type="reset"  class="btn btn-danger btn-s">
+                        <span class="glyphicon glyphicon-trash"></span>Limpar Nome</button>
+                    <button type="button" class="btn btn-success btn-s"  ng-click="hide()">Voltar</button>
+
+
+</div>
+       </form>
+       <br><br>
+
+       <div class="row">
+                         <div class="col-lg-100">
+
+                             <div class="table-responsive" ng-hide="showAddEditUser">
+                                 <table class="table table-bordered table-hover table-striped">
+
+
+
+         <thead>
+            <tr>
+               <th>Registro</th>
+               <th>Horário e Data </th>
+
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <!--<tr ng-repeat="o in os" class="active">-->
+
+          <tr dir-paginate="o in os |orderBy:sortKey:reverse|itemsPerPage:1">
+
+          <td>{{ o.registro }}</td>
+          <td>{{ o.registerDate | date : "dd/MM/yyyy 'as' h:mma"  }}</td>
+
+
+
+            <td><button ng-click="editOcorrencia(o)"  class="btn btn-success btn-s"><span class="glyphicon glyphicon-ok"></span></button></td>
+            <td><button ng-click="deleteOcorrencia(o)" class="btn btn-danger btn-s"><span class="glyphicon glyphicon-trash"></span></button></td>
+
+          </td>
+
+          <dir-pagination-controls max-size="1" boundary-links="true"></dir-pagination-controls>
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+</div>
+</div>
+
+</div>

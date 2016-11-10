@@ -1,0 +1,295 @@
+'use strict';
+
+var BASE_URL = 'http://localhost:8080/api';
+
+angular.module('mutrack', ['checklist-model', 'ngNotify', 'ngRoute', 'ngCookies', 'ngStorage'])
+    .constant('SERVICE_PATH', {
+      'ROOT_PATH': BASE_URL,
+      'PUBLIC_PATH': BASE_URL + '/public',
+      'PRIVATE_PATH': BASE_URL + '/private'
+    })
+  .config(function($routeProvider) {
+    $routeProvider.
+      when('/', {
+        templateUrl: 'src/home/home.html',
+        controller: 'HomeCtrl'
+      })
+      .when('/login', {
+        templateUrl: 'src/login/login.html',
+        controller: 'LoginCtrl'
+      })
+
+      .when('/user', {
+        templateUrl: 'src/user/user.html',
+        controller: 'UserCtrl'
+      })
+      .when('/userTable', {
+        templateUrl: 'src/userTable/usertable.html',
+        controller: 'UserTableCtrl'
+      })
+      .when('/editUser', {
+          templateUrl: 'src/editUser/editUser.html',
+          controller: 'editUserCtrl'
+        })
+
+      .when('/Funcionario', {
+      templateUrl: 'src/Funcionario/funcionario.html',
+      controller: 'funcionarioCtrl'
+    })
+
+    .when('/PrestadorServico', {
+    templateUrl: 'src/PrestadorServico/prestadorservico.html',
+    controller: 'prestadorservicoCtrl'
+  })
+
+    .when('/pesquisaFuncionario', {
+      templateUrl: 'src/pesquisaFuncionario/pesquisaFuncionario.html',
+      controller: 'pesquisaFuncionarioCtrl'
+    })
+
+
+    .when('/pesquisaPrestadorServico', {
+      templateUrl: 'src/pesquisaPrestadorServico/pesquisaPrestadorServico.html',
+      controller: 'pesquisaPrestadorServicoCtrl'
+    })
+
+
+    .when('/Cadastro', {
+      templateUrl: 'src/Cadastro/cadastro.html',
+      controller: 'cadastroCtrl'
+    })
+
+    .when('/Apartamento', {
+      templateUrl: 'src/Apartamento/apartamento.html',
+      controller: 'apCtrl'
+    })
+
+    .when('/ApartamentoMorador', {
+      templateUrl: 'src/ApartamentoMorador/morador.html',
+      controller: 'moradorCtrl'
+    })
+
+    .when('/Veiculo', {
+      templateUrl: 'src/Veiculo/veiculo.html',
+      controller: 'veiculoCtrl'
+    })
+
+    .when('/Bicicleta', {
+      templateUrl: 'src/Bicicleta/bicicleta.html',
+      controller: 'bicicletaCtrl'
+    })
+
+    .when('/Ocorrencia', {
+      templateUrl: 'src/Ocorrencia/ocorrencia.html',
+      controller: 'ocorrenciaCtrl'
+    })
+
+    .when('/Caixa', {
+      templateUrl: 'src/Caixa/caixa.html',
+      controller: 'caixaCtrl'
+    })
+
+    .when('/Conta', {
+      templateUrl: 'src/Conta/conta.html',
+      controller: 'contaCtrl'
+    })
+
+    .when('/AlugarGaragem', {
+      templateUrl: 'src/AluguelGaragem/aluguelGaragem.html',
+      controller: 'AluguelGaragemCtrl'
+    })
+
+
+    .when('/MostrarAluguelGaragemPortaria', {
+      templateUrl: 'src/MostrarAluguelGaragemPortaria/mostrarAluguelGaragemPortaria.html',
+      controller: 'AluguelCtrl'
+    })
+
+
+    .when('/Agendamento', {
+      templateUrl: 'src/Agendamento/agendamento.html',
+      controller: 'AgendaCtrl'
+    })
+
+
+    .when('/MostrarAgendamento', {
+      templateUrl: 'src/MostrarAgendamento/mostrarAgendamento.html',
+      controller: 'AgCtrl'
+    })
+
+    .when('/AlugarApartamento', {
+      templateUrl: 'src/AlugarApartamento/alugarApe.html',
+      controller: 'AlugarApeCtrl'
+    })
+
+    .when('/MostrarAlugarApe', {
+      templateUrl: 'src/MostrarAlugarApe/mostrarAlugarApe.html',
+      controller: 'MostrarAlugarApeCtrl'
+    })
+
+
+    .when('/VenderApartamento', {
+      templateUrl: 'src/VenderApartamento/venderApe.html',
+      controller: 'VenderApeCtrl'
+    })
+
+    .when('/MostrarVendaApe', {
+      templateUrl: 'src/MostrarVendaApe/mostrarVendaApe.html',
+      controller: 'MostrarVendaApeCtrl'
+    })
+
+    .when('/FotoAlugarApe', {
+      templateUrl: 'src/FotoAlugarApe/fotoApe.html',
+      controller: 'fotoApeCtrl'
+    })
+
+    .when('/MostrarFotosAlugarApe', {
+      templateUrl: 'src/MostrarFotosAlugarApe/mostrarFotoApe.html',
+      controller: 'MostrarFotoApeCtrl'
+    })
+
+
+    .when('/FotoVendaApe', {
+      templateUrl: 'src/FotoVendaApe/fotoVendaApe.html',
+      controller: 'fotoVendaApeCtrl'
+    })
+
+    .when('/MostrarFotosVendaApe', {
+      templateUrl: 'src/MostrarFotosVendaApe/mostrarFotoVendaApe.html',
+      controller: 'MostrarFotoVendaApeCtrl'
+    })
+
+      .otherwise({
+        redirectTo: '/'
+      });
+      })
+      .config(function($httpProvider) {
+        $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+        $httpProvider.defaults.withCredentials = true;
+        $httpProvider.interceptors.push('httpRequestInterceptor');
+      })
+      .run(function($rootScope, ngNotify, LoginLogoutSrv) {
+        $rootScope.authDetails = { name: '', authenticated: false, permissions: [] };
+
+        ngNotify.config({
+          theme: 'pastel'
+        });
+
+        LoginLogoutSrv.verifyAuth();
+
+        }).
+
+
+      directive('appFilereader', function(
+    $q
+    ) {
+    /*
+    made by elmerbulthuis@gmail.com WTFPL licensed
+    */
+    var slice = Array.prototype.slice;
+
+    return {
+      restrict: 'A',
+      require: '?ngModel',
+      link: function(scope, element, attrs, ngModel) {
+        if (!ngModel) {return;}
+
+        ngModel.$render = function() {};
+        function readFile(file) {
+          var deferred = $q.defer();
+
+          var reader = new FileReader();
+          reader.onload = function(e) {
+            deferred.resolve(e.target.result);
+          };
+          reader.onerror = function(e) {
+            deferred.reject(e);
+          };
+          reader.readAsDataURL(file);
+
+          return deferred.promise;
+        }
+        element.bind('change', function(e) {
+          var element = e.target;
+          if(!element.value) {return;}
+
+          element.disabled = true;
+          $q.all(slice.call(element.files, 0).map(readFile))
+            .then(function(values) {
+              if (element.multiple) {ngModel.$setViewValue(values);}
+              else {ngModel.$setViewValue(values.length ? values[0] : null);}
+              element.value = null;
+              element.disabled = false;
+
+               });
+           }); //change
+          } //link
+
+
+
+    };
+
+
+  }).directive('slider', function ($timeout) {
+return {
+ restrict: 'AE',
+replace: true,
+scope:{
+ images: '='
+},
+ link: function (scope) {
+
+ scope.currentIndex=0;
+
+ scope.next=function(){
+   if(scope.currentIndex<scope.images.length-1){
+    scope.currentIndex++;
+   }else{
+     scope.currentIndex=0;
+   }
+ };
+
+ scope.prev=function(){
+   if( scope.currentIndex>0){
+     scope.currentIndex--;
+   }else{
+     scope.currentIndex=scope.images.length-1;
+   }
+ };
+
+ scope.$watch('currentIndex',function(){
+   scope.image.forEach(function(image){
+     image.visible=false;
+   });
+   scope.images[scope.currentIndex].visible=true;
+ });
+
+ /* Start: For Automatic slideshow*/
+
+ var timer;
+
+ var sliderFunc=function(){
+   timer=$timeout(function(){
+     scope.next();
+     timer=$timeout(sliderFunc,5000);
+   },5000);
+ };
+
+ sliderFunc();
+
+ scope.$on('$destroy',function(){
+   $timeout.cancel(timer);
+ });
+
+ /* End : For Automatic slideshow*/
+
+},templateUrl:'src/img/img.html'
+/* */
+
+
+
+
+  };
+
+
+});

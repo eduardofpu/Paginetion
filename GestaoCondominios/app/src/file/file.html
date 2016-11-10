@@ -1,0 +1,111 @@
+<!--<script>
+function myFunction() {
+    var x = document.getElementById("myFile");
+    x.disabled = true;
+}
+</script>
+-->
+
+
+
+<!--ng-hide="!showAddEditformulario"-->
+<!--
+
+-->
+<div ng-click="deleteFile(fileupload)"  ng-hide="!showAddEditformulario" >
+
+    <img ng-src="../images/lixo.gif" width="100" />
+    <br>Deletar
+
+	</div>
+
+                  <form name="theForm" class="form-horizontal" novalidate  ng-submit="saveFile(fileupload)">
+
+
+
+                    <div class="panel panel-profile">
+                            <div class="panel-heading text-center  bg-success">
+
+                                      <center  ><img ng-src="{{fileupload.mimeType}},{{fileupload.file}}" width="400" class="img-circle img80_80" /></center>
+                                           	</div>
+                                            	</div>
+
+                                          <br />
+
+
+                                                <div>
+                                                     <input type="text" placeholder="Nome Image" ng-model="fileupload.image"   >
+
+                                                  </div>
+
+
+                  Selecione uma Imagem:
+                 <br />
+       <!--id="myFile"--> <!--ng-hide="showAddEditformulario" ng-click="show()"-->
+       <input   type="file" class="btn btn-danger btn-xs"   ng-model="fileupload.file" accept="image/*"
+        multiple app-filereader ng-change="updateLinkImage(fileupload.file[0])" />
+
+
+
+              <br />
+
+
+
+
+
+
+                         <!--<pre >{{fileupload | json}}</pre>-->
+
+
+                                                  <div>
+         <!--onclick="myFunction()"--> <!--ng-hide="!showAddEditformulario"-->
+       <button   type="submit" class="btn btn-success btn-s" >
+                  <span class="glyphicon glyphicon-upload"></span> Upload </button>
+
+
+
+
+                      <button type="reset"  class="btn btn-danger btn-s">
+                   <span class="glyphicon glyphicon-trash"></span>Limpar Nome</button>
+
+
+
+                     <button type="button" value="Voltar" onClick="history.go(-1)" class="btn btn-danger btn-s">Voltar </button>
+
+
+
+
+  </div>
+
+
+
+
+  <div>
+
+      <table >
+              <thead>
+                  <tr>
+                  <th>File</th>
+                  <th>MIMETYPE</th>
+                    <th>NOME IMAGE TESTE</th>
+                    </tr>
+              </thead>
+        <tbody>
+          <!--  ng-hide="showAddEditformulario" ng-hide="!showTable" ng-click="show()" -->
+          <tr ng-repeat="fileupload in fileuploads" >
+
+             <td  ng-click="editFile(fileupload)"> <img ng-src="{{fileupload.mimeType}},{{fileupload.file}}" width="150" /></td>
+                  <td ng-click="editFile(fileupload)">{{ fileupload.mimeType }}</td>
+                  <td ng-click="editFile(fileupload)">{{ fileupload.image }}</td>
+
+
+
+                </tr>
+                  </tbody>
+                    </table>
+              </div>
+
+
+ </form>
+
+     </div>
